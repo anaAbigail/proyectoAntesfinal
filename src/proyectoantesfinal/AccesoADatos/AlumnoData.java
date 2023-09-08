@@ -1,8 +1,8 @@
 
-package AccesoADatos;
+package proyectoantesfinal.AccesoADatos;
 
 /* @author Programita  */
-import proyectoAntesfinal.Entidades.Alumno;
+import proyectoantesfinal.Entidades.Alumno;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -33,7 +33,7 @@ public class AlumnoData {
             ps.setString(2, alumno.getApellido());
             ps.setString(3, alumno.getNombre());
             ps.setDate(4, Date.valueOf(alumno.getFechaNacimiento()));//localDate a Date
-            ps.setBoolean(5, alumno.isEstado()); // if reducido
+            ps.setBoolean(5, alumno.isActivo()); // if reducido
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -66,7 +66,7 @@ public class AlumnoData {
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
-                alumno.setEstado(true);
+                alumno.setActivo(true);
 
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el alumno");

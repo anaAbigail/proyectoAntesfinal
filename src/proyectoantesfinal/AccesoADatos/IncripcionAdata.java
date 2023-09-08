@@ -1,5 +1,5 @@
 
-package AccesoADatos;
+package proyectoantesfinal.AccesoADatos;
 
 /* @author Programita  */
 public class IncripcionAdata {

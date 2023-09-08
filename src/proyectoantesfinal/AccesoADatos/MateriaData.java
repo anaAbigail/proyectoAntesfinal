@@ -1,4 +1,4 @@
-package AccesoADatos;
+package proyectoantesfinal.AccesoADatos;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
