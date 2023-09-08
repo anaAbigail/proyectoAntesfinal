@@ -2,7 +2,7 @@
 package AccesoADatos;
 
 /* @author Programita  */
-import universidadejemplo.Entidades.Alumno;
+import proyectoAntesfinal.Entidades.Alumno;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
