@@ -12,6 +12,6 @@ package proyectoantesfinal.Entidades;
 public class Inscripcion {
     private int idInscripcion;
     private Alumno alumno;
-    private Materia materia;
+    //private Materia materia;
     
 }
