@@ -82,10 +82,6 @@ public class AlumnoData {
 
  
 
-    
-
-    
-
     public Alumno buscarAlumnoPorDni(int dni) {
         Alumno alumno = null;
         String sql = "SELECT idAlumno, dni, apellido, nombre, fechaNacimiento FROM alumno WHERE dni=? AND estado = 1";
