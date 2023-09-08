@@ -84,7 +84,7 @@ public class IncripcionAdata {
         return inscripciones;
     }
     
-    
+    //MateriasCursadas es una idea diferente al del pdf. Probaré más 
      public List<Materia> obtenerMateriasCursadas(int idAlumno) { 
         List<Materia> materias = new ArrayList<>();
         String sql = "SELECT idMateria FROM inscripcion WHERE idAlumno = ?";
