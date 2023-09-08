@@ -7,7 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import proyectoantesfinal.Entidades.Alumno;
 import proyectoantesfinal.Entidades.Inscripcion;
+import proyectoantesfinal.Entidades.Materia;
 
 /* @author Programita  */
 public class IncripcionAdata {
@@ -60,7 +62,7 @@ public class IncripcionAdata {
         return inscripciones;
     }
     
-    public List<Inscripcion> obtenerInscripcionesPorAlumno(int idAlumno) {
+    public List<Inscripcion> obtenerInscripcionesPorAlumno(int idAlumno) { // IDEA: PODRIA USAR MAP.HASH MAP
         List<Inscripcion> inscripciones = new ArrayList<>();
         String sql = "SELECT nota, idMateria FROM inscripcion WHERE idAlumno = ?";
         try {
@@ -71,7 +73,7 @@ public class IncripcionAdata {
                 int nota = rs.getInt("nota");
                 int idMateria = rs.getInt("idMateria");
                 Alumno alumno = aluData.buscarAlumno(idAlumno);
-                Materia materia = matData.buscarMateria(idMateria);
+                Materia materia = matData.buscarMateria(idMateria);//buscar materia un mtodo de materiaData
                 Inscripcion inscripcion = new Inscripcion(alumno, materia, nota);
                 inscripciones.add(inscripcion);
             }
@@ -83,7 +85,7 @@ public class IncripcionAdata {
     }
     
     
-     public List<Materia> obtenerMateriasCursadas(int idAlumno) {
+     public List<Materia> obtenerMateriasCursadas(int idAlumno) { 
         List<Materia> materias = new ArrayList<>();
         String sql = "SELECT idMateria FROM inscripcion WHERE idAlumno = ?";
         try {
@@ -101,9 +103,24 @@ public class IncripcionAdata {
         }
         return materias;
     }
+    // tambien podria usar un map creo
     
-    
-    
+    public void borrarInscripcionMateriaAlumno(int idAlumno, int idMateria) {
+      
+    }
+
+    public void actualizarNota(int idAlumno, int idMateria) {
+       
+    }
+
+    public void actualizarNota(int idAlumno, int idMateria, double nota) {
+        
+    }
+
+    public List<Alumno> obtenerAlumnosXMateria(int idMateria) {
+       
+        return null;
+    }
     
     
     
