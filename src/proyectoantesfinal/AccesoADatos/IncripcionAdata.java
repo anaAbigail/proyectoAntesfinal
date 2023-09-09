@@ -15,8 +15,8 @@ import proyectoantesfinal.Entidades.Materia;
 public class IncripcionAdata {
 
     private Connection con = null;
-    private MateriaData matData;
-    private AlumnoData aluData;
+    private final MateriaData matData;
+    private  AlumnoData aluData;
 
     public IncripcionAdata() {
 
@@ -29,7 +29,7 @@ public class IncripcionAdata {
         String sql = "INSERT INTO inscripcion (nota, idAlumno, idMateria) VALUES (?, ?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, insc.getNota());
+            ps.setInt(1, (int) insc.getNota());
             ps.setInt(2, insc.getAlumno().getIdAlumno());
             ps.setInt(3, insc.getMateria().getIdMateria());
             ps.executeUpdate();
@@ -88,7 +88,36 @@ public class IncripcionAdata {
     // no entendi (?
      public List<Materia> obtenerMateriasCursadas(int idAlumno) { 
         List<Materia> materias = new ArrayList<>();
-        String sql = "SELECT idMateria FROM inscripcion WHERE idAlumno = ?";
+        
+        
+        
+        try {
+            String sql = "SELECT inscripcion.idMateria,nombre, año FROM inscripcion,"
+                +"materia WHERE inscripcion.idMateria = materia.idMateria\n" +
+                "AND inscripcion.idAlumno =?;";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idAlumno);
+            ResultSet rs = ps.executeQuery();
+            Materia materia;
+            while (rs.next()) {
+                materia = new Materia ();
+                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setNombre(rs.getString("nombre"));
+                materia.setAnioMateria(rs.getInt("año"));
+                materias.add(materia);
+                
+                
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener materias cursadas por alumno: " + ex.getMessage());
+        }
+        return materias;
+    }
+    // tambien podria usar un map creo
+      public List<Materia> obtenerMateriasNOCursadas(int idAlumno) {
+        List<Materia> materias = new ArrayList<>();
+        String sql = "SELECT idMateria FROM materia WHERE idMateria NOT IN (SELECT idMateria FROM inscripcion WHERE idAlumno = ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAlumno);
@@ -100,29 +129,29 @@ public class IncripcionAdata {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al obtener materias cursadas por alumno: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al obtener materias no cursadas por alumno: " + ex.getMessage());
         }
         return materias;
     }
-    // tambien podria usar un map creo
     
-    public void borrarInscripcionMateriaAlumno(int idAlumno, int idMateria) {
-      
+     public void borrarInscripcionMateriaAlumno(int idAlumno, int idMateria) {
+        String sql = "DELETE FROM inscripcion WHERE idAlumno = ? AND idMateria = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idAlumno);
+            ps.setInt(2, idMateria);
+            int filasBorradas = ps.executeUpdate();
+            if (filasBorradas > 0) {
+                JOptionPane.showMessageDialog(null, "Inscripción borrada con éxito.");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontró la inscripción.");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al borrar la inscripción: " + ex.getMessage());
+        }
     }
 
-    public void actualizarNota(int idAlumno, int idMateria) {
-       
-    }
-
-    public void actualizarNota(int idAlumno, int idMateria, double nota) {
-        
-    }
-
-    public List<Alumno> obtenerAlumnosXMateria(int idMateria) {
-       
-        return null;
-    }
-    
     
     
     
