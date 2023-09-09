@@ -108,6 +108,7 @@ public class IncripcionAdata {
     
     public void borrarInscripcionMateriaAlumno(int idAlumno, int idMateria) {
       
+        
     }
 
     public void actualizarNota(int idAlumno, int idMateria) {
