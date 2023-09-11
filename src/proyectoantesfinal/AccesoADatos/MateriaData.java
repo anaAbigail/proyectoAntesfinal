@@ -3,26 +3,18 @@ package proyectoantesfinal.AccesoADatos;
 import java.awt.List;
 import java.sql.Connection;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import proyectoantesfinal.Entidades.Materia;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
-/**
- *
- * @author yadhi
- */
 public class MateriaData {
     private Connection con = null;
     
     public MateriaData(){
+        con = Conexion.getConexion();
     
 }
     public void guardarMateria(Materia materia){
+        String sql = "INSERT into materia (nombre, anioMateria, estado) VALUES (?,?,?)";
         
     }
     /*
