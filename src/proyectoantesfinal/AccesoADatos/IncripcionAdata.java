@@ -106,26 +106,39 @@ public class IncripcionAdata {
     }
     // tambien podria usar un map creo
     
+     public List<Materia> obtenerMateriasNOCursadas(int idAlumno) {
+    List<Materia> materiasNoCursadas = new ArrayList<>();
+    String sql = "SELECT idMateria, nombre, año FROM materia " +
+                 "WHERE idMateria NOT IN (SELECT idMateria FROM inscripcion WHERE idAlumno = ?)";
+    
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idAlumno);
+        ResultSet rs = ps.executeQuery();
+        
+        while (rs.next()) {
+            int idMateria = rs.getInt("idMateria");
+            String nombre = rs.getString("nombre");
+            int año = rs.getInt("año");
+            
+            Materia materia = new Materia(idMateria, nombre, año);
+            materiasNoCursadas.add(materia);
+        }
+        
+        ps.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al obtener materias no cursadas por el alumno: " + ex.getMessage());
+    }
+    
+    return materiasNoCursadas;
+}
+     
+     
+     
     public void borrarInscripcionMateriaAlumno(int idAlumno, int idMateria) {
       
         
     }
-
-
-    public void actualizarNota(int idAlumno, int idMateria) {
-       
-    }
-
-    public void actualizarNota(int idAlumno, int idMateria, double nota) {
-        
-    }
-
-    public List<Alumno> obtenerAlumnosXMateria(int idMateria) {
-       
-        return null;
-    }
-    
-    
 
     public void actualizarNota(int idAlumno, int idMateria, double nota) {
         String sql = "UPDATE inscripcion SET nota = ? WHERE idAlumno = ? AND idMateria = ?";
