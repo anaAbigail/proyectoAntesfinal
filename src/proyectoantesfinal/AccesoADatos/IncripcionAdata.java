@@ -111,7 +111,7 @@ public class IncripcionAdata {
         
     }
 
-<<<<<<< HEAD
+
     public void actualizarNota(int idAlumno, int idMateria) {
        
     }
@@ -126,7 +126,7 @@ public class IncripcionAdata {
     }
     
     
-=======
+
     public void actualizarNota(int idAlumno, int idMateria, double nota) {
         String sql = "UPDATE inscripcion SET nota = ? WHERE idAlumno = ? AND idMateria = ?";
         try {
@@ -164,7 +164,7 @@ public class IncripcionAdata {
         }
         return alumnos;
     }
->>>>>>> 969bc1f88a23917bab50b20068852bcd6008324a
+
     
     
     
