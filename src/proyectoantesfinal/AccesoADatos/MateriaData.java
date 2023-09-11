@@ -18,7 +18,9 @@ public class MateriaData {
         String sql = "INSERT into materia (nombre, anioMateria, estado) VALUES (?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
+            
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "algo salió mal dice yadhi");
         }
     }
     /*
