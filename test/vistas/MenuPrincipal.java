@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectoantesfinal.Vistas;
+package vistas;
 
 /**
  *
@@ -55,6 +55,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD:src/proyectoantesfinal/Vistas/MenuPrincipal.java
             .addGap(0, 265, Short.MAX_VALUE)
         );
 
@@ -82,6 +83,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
+=======
+            .addGap(0, 278, Short.MAX_VALUE)
+>>>>>>> 969bc1f88a23917bab50b20068852bcd6008324a:test/vistas/MenuPrincipal.java
         );
 
         jMenu1.setText("Alumno");

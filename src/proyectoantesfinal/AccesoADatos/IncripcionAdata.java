@@ -111,6 +111,7 @@ public class IncripcionAdata {
         
     }
 
+<<<<<<< HEAD
     public void actualizarNota(int idAlumno, int idMateria) {
        
     }
@@ -125,6 +126,45 @@ public class IncripcionAdata {
     }
     
     
+=======
+    public void actualizarNota(int idAlumno, int idMateria, double nota) {
+        String sql = "UPDATE inscripcion SET nota = ? WHERE idAlumno = ? AND idMateria = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setDouble(1, nota);
+            ps.setInt(2, idAlumno);
+            ps.setInt(3, idMateria);
+            int filasActualizadas = ps.executeUpdate();
+            if (filasActualizadas > 0) {
+                JOptionPane.showMessageDialog(null, "Nota actualizada con éxito.");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontró la inscripción.");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar la nota: " + ex.getMessage());
+        }
+    }
+
+    public List<Alumno> obtenerAlumnosXMateria(int idMateria) {
+        List<Alumno> alumnos = new ArrayList<>();
+        String sql = "SELECT idAlumno FROM inscripcion WHERE idMateria = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idMateria);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int idAlumno = rs.getInt("idAlumno");
+                Alumno alumno = aluData.buscarAlumno(idAlumno);
+                alumnos.add(alumno);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener alumnos por materia: " + ex.getMessage());
+        }
+        return alumnos;
+    }
+>>>>>>> 969bc1f88a23917bab50b20068852bcd6008324a
     
     
     
