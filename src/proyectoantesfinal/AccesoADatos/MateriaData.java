@@ -25,10 +25,10 @@ public class MateriaData {
     public void guardarMateria(Materia materia){
         
     }
-    
+    /*
     public Materia buscarMateria(int id){
     }
-    
+    */
     public void modificarMateria(Materia materia){
         
     }
@@ -36,9 +36,9 @@ public class MateriaData {
     public void eliminarMateria(int id){
         
     }
-    
+    /*
     public List<Materia> listarMaterias = new ArrayList<>();
-        return listarMaterias;
+        return listarMaterias;*/
     
     
 }
