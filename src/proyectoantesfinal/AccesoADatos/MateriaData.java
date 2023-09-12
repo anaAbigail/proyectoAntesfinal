@@ -60,7 +60,9 @@ public class MateriaData {
  }
     
     public void modificarMateria(Materia materia){
-        
+        String sql = "UPDATE materia SET nombre = ?, anioMateria = ? WHERE idMateria = ?";
+        PreparedStatement ps = null;
+        //falta terminar esto
     }
     
     public void eliminarMateria(int id){
