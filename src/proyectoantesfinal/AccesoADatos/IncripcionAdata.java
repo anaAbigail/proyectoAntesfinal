@@ -119,9 +119,10 @@ public class IncripcionAdata {
             while (rs.next()) {
                 int idMateria = rs.getInt("idMateria");
                 String nombre = rs.getString("nombre");
-                int año = rs.getInt("año");
-
-                Materia materia = new Materia(idMateria, nombre, año);
+                int anioMateria = rs.getInt("anioMateria");
+                boolean estado = rs.getBoolean("estado");
+                
+                Materia materia = new Materia(idMateria, nombre, anioMateria, estado);
                 materiasNoCursadas.add(materia);
             }
 
