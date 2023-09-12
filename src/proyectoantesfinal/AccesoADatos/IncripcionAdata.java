@@ -39,7 +39,7 @@ public class IncripcionAdata {
             JOptionPane.showMessageDialog(null, "Error al guardar la inscripción: " + ex.getMessage());
         }
     }
-    
+
     public List<Inscripcion> obtenerInscripciones() {
         List<Inscripcion> inscripciones = new ArrayList<>();
         String sql = "SELECT nota, idAlumno, idMateria FROM inscripcion";
@@ -61,7 +61,7 @@ public class IncripcionAdata {
         }
         return inscripciones;
     }
-    
+
     public List<Inscripcion> obtenerInscripcionesPorAlumno(int idAlumno) { // IDEA: PODRIA USAR MAP.HASH MAP
         List<Inscripcion> inscripciones = new ArrayList<>();
         String sql = "SELECT nota, idMateria FROM inscripcion WHERE idAlumno = ?";
@@ -83,10 +83,10 @@ public class IncripcionAdata {
         }
         return inscripciones;
     }
-    
+
     //MateriasCursadas es una idea diferente al del pdf. Probaré más 
     // no entendi (?
-     public List<Materia> obtenerMateriasCursadas(int idAlumno) { 
+    public List<Materia> obtenerMateriasCursadas(int idAlumno) {
         List<Materia> materias = new ArrayList<>();
         String sql = "SELECT idMateria FROM inscripcion WHERE idAlumno = ?";
         try {
@@ -105,39 +105,36 @@ public class IncripcionAdata {
         return materias;
     }
     // tambien podria usar un map creo
-    
-     public List<Materia> obtenerMateriasNOCursadas(int idAlumno) {
-    List<Materia> materiasNoCursadas = new ArrayList<>();
-    String sql = "SELECT idMateria, nombre, año FROM materia " +
-                 "WHERE idMateria NOT IN (SELECT idMateria FROM inscripcion WHERE idAlumno = ?)";
-    
-    try {
-        PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, idAlumno);
-        ResultSet rs = ps.executeQuery();
-        
-        while (rs.next()) {
-            int idMateria = rs.getInt("idMateria");
-            String nombre = rs.getString("nombre");
-            int año = rs.getInt("año");
-            
-            Materia materia = new Materia(idMateria, nombre, año);
-            materiasNoCursadas.add(materia);
+
+    public List<Materia> obtenerMateriasNOCursadas(int idAlumno) {
+        List<Materia> materiasNoCursadas = new ArrayList<>();
+        String sql = "SELECT idMateria, nombre, año FROM materia "
+                + "WHERE idMateria NOT IN (SELECT idMateria FROM inscripcion WHERE idAlumno = ?)";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idAlumno);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int idMateria = rs.getInt("idMateria");
+                String nombre = rs.getString("nombre");
+                int año = rs.getInt("año");
+
+                Materia materia = new Materia(idMateria, nombre, año);
+                materiasNoCursadas.add(materia);
+            }
+
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener materias no cursadas por el alumno: " + ex.getMessage());
         }
-        
-        ps.close();
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Error al obtener materias no cursadas por el alumno: " + ex.getMessage());
+
+        return materiasNoCursadas;
     }
-    
-    return materiasNoCursadas;
-}
-     
-     
-     
+
     public void borrarInscripcionMateriaAlumno(int idAlumno, int idMateria) {
-      
-        
+
     }
 
     public void actualizarNota(int idAlumno, int idMateria, double nota) {
@@ -178,8 +175,4 @@ public class IncripcionAdata {
         return alumnos;
     }
 
-    
-    
-    
-    
 }
