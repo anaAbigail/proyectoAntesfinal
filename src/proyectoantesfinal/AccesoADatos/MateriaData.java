@@ -23,7 +23,7 @@ public class MateriaData {
             ps.setString(1, materia.getNombre());
             ps.setInt(2, materia.getAnioMateria());
             ps.setBoolean(3, materia.isEstado());
-            
+            ps.executeUpdate();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "algo salió mal dice yadhi");
         }
