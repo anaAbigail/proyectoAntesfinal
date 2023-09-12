@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import proyectoantesfinal.Entidades.Materia;
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 public class MateriaData {
     private Connection con = null;
     
