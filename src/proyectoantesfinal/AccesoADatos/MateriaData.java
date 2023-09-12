@@ -5,12 +5,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import org.mariadb.jdbc.Statement;
 import proyectoantesfinal.Entidades.Materia;
 
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 public class MateriaData {
     private Connection con = null;
     
@@ -21,7 +19,10 @@ public class MateriaData {
     public void guardarMateria(Materia materia){
         String sql = "INSERT into materia (nombre, anioMateria, estado) VALUES (?,?,?)";
         try {
-            PreparedStatement ps = con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, materia.getNombre());
+            ps.setInt(2, materia.getAnioMateria());
+            ps.setBoolean(3, materia.isEstado());
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "algo salió mal dice yadhi");
