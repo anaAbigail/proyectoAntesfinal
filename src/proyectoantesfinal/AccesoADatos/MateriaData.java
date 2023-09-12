@@ -1,5 +1,6 @@
 package proyectoantesfinal.AccesoADatos;
 
+import com.sun.org.apache.bcel.internal.generic.RETURN;
 import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -60,14 +61,63 @@ public class MateriaData {
  }
     
     public void modificarMateria(Materia materia){
-        String sql = "UPDATE materia SET nombre = ?, anioMateria = ? WHERE idMateria = ?";
+        String sql = "UPDATE materia SET nombre = ?, anioMateria = ?, estado = ? WHERE idMateria = ?";
         PreparedStatement ps = null;
-        //falta terminar esto
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, materia.getNombre());
+            ps.setInt(2, materia.getAnioMateria());
+            ps.setBoolean(3, materia.isEstado());
+            ps.setInt(4, materia.getIdMateria());
+            int sqlUpdate = ps.executeUpdate();
+            if (sqlUpdate==1) {
+                JOptionPane.showMessageDialog(null, "Materia actualizada correctamente");
+            }else{
+                JOptionPane.showMessageDialog(null, "La materia no existe");
+            }
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo acceder a la tabla Materia"+ ex.getMessage());
+        }
     }
     
     public void eliminarMateria(int id){
-        
+        try {
+            String sql = "UPDATE materia SET estado = 0 WHERE idMateria = ?";
+            PreparedStatement ps = null;
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int sqlDelete = ps.executeUpdate();
+            if (sqlDelete==1) {
+                JOptionPane.showMessageDialog(null, "Se eliminó materia");
+            }else{
+                JOptionPane.showMessageDialog(null, "No se encontró materia");
+            }
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo acceder a la tabla Materia"+ ex.getMessage());
+        }
     }
+    
+    /*
+    public List<Materia> listarMaterias(){
+           List<Materia> materias = new ArrayList<>();
+           try {
+               String sql = "SELECT * FROM materia WHERE estado = 1";
+               PreparedStatement ps = con.prepareStatement(sql);
+               ResultSet rs = ps.executeQuery();
+               while (rs.next()) {
+                   Object nextElement = rs.nextElement();
+                   
+               }
+            
+        } catch (Exception e) {
+        }
+           return materias;
+    }
+    
+    */
+    
     /*
     public List<Materia> listarMaterias = new ArrayList<>();
         return listarMaterias;*/
