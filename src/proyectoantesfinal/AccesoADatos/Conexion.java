@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 /* @author Programita  */
 public class Conexion {
     private static final String URL="jdbc:mysql://localhost/";
-    private static final String DB ="universidad";
+    private static final String DB ="uuniversidadulp";
     private static final String USUARIO="root";
     private static final String PASSWORD ="";
     
@@ -39,7 +39,7 @@ sin necesitad crear una instancia de la misma, ya que no podríamos por el hecho
                 //conexion con la base de datos 
                 conexion = DriverManager
                         .getConnection(URL+DB + "?useLegacyyDatetimeCode=false&serverTimezone=UTC"
-                        +"&user" + USUARIO + "&password" + PASSWORD);
+                        +"&user=" + USUARIO + "&password=" + PASSWORD);
             }catch(SQLException ex){
                 JOptionPane.showMessageDialog(null, "Error al conectarse a la BD"+ ex.getMessage());
             }catch (ClassNotFoundException ex){
