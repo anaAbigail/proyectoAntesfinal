@@ -14,7 +14,7 @@ public class Conexion {
     private static final String PASSWORD ="";
     
     
-    private static Connection conexion;
+    private static Connection connection;
     
     //metodo constructor
     
@@ -30,14 +30,14 @@ tener un único objeto Connection activo durante la ejecución de nuestra aplica
 sin necesitad crear una instancia de la misma, ya que no podríamos por el hecho de que tiene un
 único constructor privado.*/
         
-        if (conexion==null) {
+        if (connection==null) {
             try{
                 //carga de drivers
                 Class.forName("org.mariadb.jdbc.Driver");
                 //Setup the conection with the DB
                 
                 //conexion con la base de datos 
-                conexion = DriverManager
+                connection = DriverManager
                         .getConnection(URL+DB + "?useLegacyyDatetimeCode=false&serverTimezone=UTC"
                         +"&user=" + USUARIO + "&password=" + PASSWORD);
             }catch(SQLException ex){
@@ -47,6 +47,6 @@ sin necesitad crear una instancia de la misma, ya que no podríamos por el hecho
             }
             
         }
-        return conexion;
+        return connection;
     }
 }
