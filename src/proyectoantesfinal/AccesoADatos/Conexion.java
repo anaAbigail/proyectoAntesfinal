@@ -8,13 +8,13 @@ import javax.swing.JOptionPane;
 
 /* @author Programita  */
 public class Conexion {
-    private static final String URL="jdbc:mysql://localhost/";
-    private static final String DB ="uuniversidadulp";
+    private static final String URL="jdbc:mariadb://localhost/";
+    private static final String DB ="universidad";
     private static final String USUARIO="root";
     private static final String PASSWORD ="";
     
     
-    private static Connection connection;
+    private static Connection conexion;
     
     //metodo constructor
     
@@ -30,14 +30,14 @@ tener un único objeto Connection activo durante la ejecución de nuestra aplica
 sin necesitad crear una instancia de la misma, ya que no podríamos por el hecho de que tiene un
 único constructor privado.*/
         
-        if (connection==null) {
+        if (conexion==null) {
             try{
                 //carga de drivers
                 Class.forName("org.mariadb.jdbc.Driver");
                 //Setup the conection with the DB
                 
                 //conexion con la base de datos 
-                connection = DriverManager
+                conexion = DriverManager
                         .getConnection(URL+DB + "?useLegacyyDatetimeCode=false&serverTimezone=UTC"
                         +"&user=" + USUARIO + "&password=" + PASSWORD);
             }catch(SQLException ex){
@@ -47,6 +47,6 @@ sin necesitad crear una instancia de la misma, ya que no podríamos por el hecho
             }
             
         }
-        return connection;
+        return conexion;
     }
 }

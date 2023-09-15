@@ -1,17 +1,18 @@
 package proyectoantesfinal.AccesoADatos;
 
 import com.sun.org.apache.bcel.internal.generic.RETURN;
-import java.awt.List;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import org.mariadb.jdbc.Statement;
+
 import proyectoantesfinal.Entidades.Materia;
 
 
@@ -100,7 +101,7 @@ public class MateriaData {
         }
     }
     
-    /*
+    
     public List<Materia> listarMaterias(){
            List<Materia> materias = new ArrayList<>();
            try {
@@ -108,7 +109,8 @@ public class MateriaData {
                PreparedStatement ps = con.prepareStatement(sql);
                ResultSet rs = ps.executeQuery();
                while (rs.next()) {
-                   Object nextElement = rs.nextElement();
+                   Materia materia = new Materia() ;
+                   materia.setIdMateria(rs.getInt("idMateria"));
                    
                }
             
@@ -117,7 +119,7 @@ public class MateriaData {
            return materias;
     }
     
-    */
+    
     
     /*
     public List<Materia> listarMaterias = new ArrayList<>();
