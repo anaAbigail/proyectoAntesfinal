@@ -30,7 +30,6 @@ public class Menu extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
-        escritorio = new javax.swing.JDesktopPane();
         jInternalFrame1 = new javax.swing.JInternalFrame();
         jInternalFrame2 = new javax.swing.JInternalFrame();
         jInternalFrame3 = new javax.swing.JInternalFrame();
@@ -76,31 +75,19 @@ public class Menu extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoantesfinal/Vistas/Imagenes/ulpLogo.png"))); // NOI18N
         jLabel2.setText("jLabel2");
 
-        javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
-        escritorio.setLayout(escritorioLayout);
-        escritorioLayout.setHorizontalGroup(
-            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 712, Short.MAX_VALUE)
-        );
-        escritorioLayout.setVerticalGroup(
-            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 488, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout PanelDerechoLayout = new javax.swing.GroupLayout(PanelDerecho);
         PanelDerecho.setLayout(PanelDerechoLayout);
         PanelDerechoLayout.setHorizontalGroup(
             PanelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelDerechoLayout.createSequentialGroup()
-                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(76, 76, 76)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(PanelDerechoLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
                 .addGroup(PanelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(PanelDerechoLayout.createSequentialGroup()
-                        .addGap(197, 197, 197)
-                        .addGroup(PanelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(259, 259, 259))
@@ -108,7 +95,7 @@ public class Menu extends javax.swing.JFrame {
         PanelDerechoLayout.setVerticalGroup(
             PanelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelDerechoLayout.createSequentialGroup()
-                .addGap(456, 456, 456)
+                .addGap(19, 19, 19)
                 .addComponent(jLabel1)
                 .addGap(29, 29, 29)
                 .addGroup(PanelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,9 +105,6 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2))
                 .addContainerGap(179, Short.MAX_VALUE))
-            .addGroup(PanelDerechoLayout.createSequentialGroup()
-                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout FondoLayout = new javax.swing.GroupLayout(Fondo);
@@ -222,11 +206,6 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.setSelectionModel(null);
 
         jMenu1.setText("Alumno");
-        jMenu1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1ActionPerformed(evt);
-            }
-        });
 
         jFormularioAlumno.setText("Formulario de Alumno");
         jFormularioAlumno.addActionListener(new java.awt.event.ActionListener() {
@@ -271,19 +250,12 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jFormularioAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormularioAlumnoActionPerformed
-//        escritorio.removeAll();
-//        AlumnoVistas fa = new AlumnoVistas();
-//        fa.setVisible(true);
-//        escritorio.add(fa);
+        guardarAlumno();
     }//GEN-LAST:event_jFormularioAlumnoActionPerformed
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu2ActionPerformed
-
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -323,7 +295,6 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Fondo;
     private javax.swing.JPanel PanelDerecho;
-    private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuItem jFormularioAlumno;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JInternalFrame jInternalFrame2;
