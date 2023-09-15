@@ -121,9 +121,7 @@ public class MateriaData {
     
     
     
-    /*
-    public List<Materia> listarMaterias = new ArrayList<>();
-        return listarMaterias;*/
+ 
     
     
 }
