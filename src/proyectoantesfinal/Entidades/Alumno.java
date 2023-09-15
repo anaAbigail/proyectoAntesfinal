@@ -11,7 +11,9 @@ public class Alumno {
     private String nombre;
     private LocalDate fechaNacimiento;
     private boolean estado;
-
+    
+    //era "activo", no "estado" xd
+    
     public Alumno() {
     }
 
