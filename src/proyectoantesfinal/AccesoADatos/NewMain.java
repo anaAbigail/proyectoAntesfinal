@@ -15,9 +15,9 @@ public class NewMain {
         //probar.guardarAlumno(alicia);
         
         
-        Alumno alicia=probar.buscarAlumno(32);
+        Alumno cualEsElAlumno=probar.buscarAlumno(32);
         
-        System.out.println("alumno: "+alicia);
+        System.out.println("alumno: "+cualEsElAlumno);
                     
         
         
