@@ -22,6 +22,7 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSpinField1 = new com.toedter.components.JSpinField();
         escritorio = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -34,8 +35,13 @@ public class Menu extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jFormularioAlumno = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jFormularioMateria = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
+        jManejoDeInscripciones = new javax.swing.JMenuItem();
+        ManipulacionDeNotas = new javax.swing.JMenuItem();
+        AlumnosXMateria = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -126,8 +132,6 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.setName("");
 
-        jMenuBar1.setSelectionModel(null);
-
         jMenu1.setText("Alumno");
 
         jFormularioAlumno.setText("Formulario de Alumno");
@@ -146,13 +150,36 @@ public class Menu extends javax.swing.JFrame {
                 jMenu2ActionPerformed(evt);
             }
         });
+
+        jFormularioMateria.setText("Formulario de Materia");
+        jFormularioMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormularioMateriaActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jFormularioMateria);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Administración");
+
+        jManejoDeInscripciones.setText("Manejo de Inscripciones");
+        jMenu3.add(jManejoDeInscripciones);
+
+        ManipulacionDeNotas.setText("Manipulacion de Notas");
+        jMenu3.add(ManipulacionDeNotas);
+
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setText("Consulta");
-        jMenuBar1.add(jMenu4);
+        AlumnosXMateria.setText("Consultas");
+
+        jMenuItem4.setText("Alumnos por Materia");
+        AlumnosXMateria.add(jMenuItem4);
+
+        jMenuBar1.add(AlumnosXMateria);
+
+        jMenu5.setText("Salir");
+        jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
 
@@ -187,15 +214,20 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jFormularioMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormularioMateriaActionPerformed
+     
+        escritorio.removeAll(); 
+        escritorio.repaint();  
+        MateriaFormuView formuM = new MateriaFormuView(); 
+        formuM.setVisible(true);
+       
+        escritorio.add(formuM); 
+        escritorio.moveToFront(formuM);   
+    }//GEN-LAST:event_jFormularioMateriaActionPerformed
+
+    /** @param args the command line arguments*/
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+      
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -223,18 +255,24 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu AlumnosXMateria;
+    private javax.swing.JMenuItem ManipulacionDeNotas;
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuItem jFormularioAlumno;
+    private javax.swing.JMenuItem jFormularioMateria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenuItem jManejoDeInscripciones;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private com.toedter.components.JSpinField jSpinField1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     // End of variables declaration//GEN-END:variables
