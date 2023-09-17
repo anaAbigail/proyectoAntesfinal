@@ -164,9 +164,19 @@ public class Menu extends javax.swing.JFrame {
         jMenu3.setText("Administración");
 
         jManejoDeInscripciones.setText("Manejo de Inscripciones");
+        jManejoDeInscripciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jManejoDeInscripcionesActionPerformed(evt);
+            }
+        });
         jMenu3.add(jManejoDeInscripciones);
 
         ManipulacionDeNotas.setText("Manipulacion de Notas");
+        ManipulacionDeNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManipulacionDeNotasActionPerformed(evt);
+            }
+        });
         jMenu3.add(ManipulacionDeNotas);
 
         jMenuBar1.add(jMenu3);
@@ -224,6 +234,26 @@ public class Menu extends javax.swing.JFrame {
         escritorio.add(formuM); 
         escritorio.moveToFront(formuM);   
     }//GEN-LAST:event_jFormularioMateriaActionPerformed
+
+    private void jManejoDeInscripcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jManejoDeInscripcionesActionPerformed
+        escritorio.removeAll(); 
+        escritorio.repaint();  
+        InscripcionFormuView formuInscripcion = new InscripcionFormuView(); 
+        formuInscripcion.setVisible(true);
+       
+        escritorio.add(formuInscripcion); 
+        escritorio.moveToFront(formuInscripcion);        
+    }//GEN-LAST:event_jManejoDeInscripcionesActionPerformed
+
+    private void ManipulacionDeNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManipulacionDeNotasActionPerformed
+     escritorio.removeAll(); 
+        escritorio.repaint();  
+        ActualizacionNotasFormuView ActNotas = new ActualizacionNotasFormuView(); 
+        ActNotas.setVisible(true);
+       
+        escritorio.add(ActNotas); 
+        escritorio.moveToFront(ActNotas); 
+    }//GEN-LAST:event_ManipulacionDeNotasActionPerformed
 
     /** @param args the command line arguments*/
     public static void main(String args[]) {
