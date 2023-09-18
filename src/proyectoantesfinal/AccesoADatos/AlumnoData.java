@@ -72,16 +72,14 @@ public class AlumnoData {
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el alumno");
             }
-                pss.close();
-            }catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage());
+            pss.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage());
 
-            }
-
-            return alumno;
         }
 
- 
+        return alumno;
+    }
 
     public Alumno buscarAlumnoPorDni(int dni) {
         Alumno alumno = null;

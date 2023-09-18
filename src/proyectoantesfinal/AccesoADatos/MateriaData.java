@@ -1,6 +1,5 @@
 package proyectoantesfinal.AccesoADatos;
 
-import com.sun.org.apache.bcel.internal.generic.RETURN;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,8 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 import proyectoantesfinal.Entidades.Materia;
@@ -111,10 +108,14 @@ public class MateriaData {
                while (rs.next()) {
                    Materia materia = new Materia() ;
                    materia.setIdMateria(rs.getInt("idMateria"));
-                   
+                   materia.setNombre(rs.getString("nombre"));
+                   materia.setAnioMateria(rs.getInt("año"));
+                   materia.setEstado(rs.getBoolean("estado"));
+                   materias.add(materia);
                }
-            
-        } catch (Exception e) {
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tawbla materia "+ e.getMessage());
         }
            return materias;
     }
