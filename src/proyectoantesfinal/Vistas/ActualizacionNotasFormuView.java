@@ -59,7 +59,7 @@ public class ActualizacionNotasFormuView extends javax.swing.JInternalFrame {
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
 
         TitleCodigo.setBackground(new java.awt.Color(255, 255, 255));
-        TitleCodigo.setFont(new java.awt.Font("Cambria Math", 0, 18)); // NOI18N
+        TitleCodigo.setFont(new java.awt.Font("Cambria Math", 1, 18)); // NOI18N
         TitleCodigo.setForeground(new java.awt.Color(0, 0, 0));
         TitleCodigo.setText("Seleccione un alumno");
 
@@ -152,7 +152,7 @@ public class ActualizacionNotasFormuView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_ButtonNuevoActionPerformed
 
     private void ButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSalirActionPerformed
-        // TODO add your handling code here:
+       this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_ButtonSalirActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed

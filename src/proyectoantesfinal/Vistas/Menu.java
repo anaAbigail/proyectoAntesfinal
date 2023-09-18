@@ -4,6 +4,10 @@
  */
 package proyectoantesfinal.Vistas;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Programita
@@ -22,7 +26,16 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        escritorio = new javax.swing.JDesktopPane();
+        ImageIcon icon= new ImageIcon(getClass().getResource("Fondo.jpg"));
+        Image img=icon.getImage();
+        escritorio = new javax.swing.JDesktopPane(){
+
+            public void paintComponent(Graphics g)
+            {
+                g.drawImage(img,0,0,getWidth(),getHeight(),this);
+
+            }
+        };
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -44,7 +57,6 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(700, 600));
 
         escritorio.setBackground(new java.awt.Color(204, 255, 255));
 
@@ -93,7 +105,7 @@ public class Menu extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(193, 193, 193)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,7 +118,7 @@ public class Menu extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2))
-                .addGap(0, 160, Short.MAX_VALUE))
+                .addGap(0, 181, Short.MAX_VALUE))
         );
 
         escritorio.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -193,6 +205,11 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(AlumnosXMateria);
 
         jMenu5.setText("Salir");
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu5MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
@@ -213,7 +230,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jFormularioAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormularioAlumnoActionPerformed
         
-        escritorio.removeAll(); //le decimos al escritorio que si hay una ventana puesta, la remueva
+        //escritorio.removeAll(); //le decimos al escritorio que si hay una ventana puesta, la remueva
         escritorio.repaint();  // Aca le pedimos al escritorio que se redibuje (como que se actualice)
         AlumnoFormuView formuA = new AlumnoFormuView(); //instaciamos un objeto de nuestra vista que es AlumnoFormuView. esto se guarda en una variable "formuA"
         formuA.setVisible(true); //al instanciar una ventana por defecto está invisible, entoces acá lo ponemos visile 
@@ -230,7 +247,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jFormularioMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormularioMateriaActionPerformed
      
-        escritorio.removeAll(); 
+        
         escritorio.repaint();  
         MateriaFormuView formuM = new MateriaFormuView(); 
         formuM.setVisible(true);
@@ -240,17 +257,17 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jFormularioMateriaActionPerformed
 
     private void jManejoDeInscripcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jManejoDeInscripcionesActionPerformed
-        escritorio.removeAll(); 
         escritorio.repaint();  
         InscripcionFormuView formuInscripcion = new InscripcionFormuView(); 
         formuInscripcion.setVisible(true);
        
         escritorio.add(formuInscripcion); 
+        
         escritorio.moveToFront(formuInscripcion);        
     }//GEN-LAST:event_jManejoDeInscripcionesActionPerformed
 
     private void ManipulacionDeNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManipulacionDeNotasActionPerformed
-     escritorio.removeAll(); 
+    
         escritorio.repaint();  
         ActualizacionNotasFormuView ActNotas = new ActualizacionNotasFormuView(); 
         ActNotas.setVisible(true);
@@ -260,7 +277,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_ManipulacionDeNotasActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-       escritorio.removeAll(); 
+     
         escritorio.repaint();  
         ConsultasView ConsultasView = new ConsultasView(); 
         ConsultasView.setVisible(true);
@@ -268,6 +285,10 @@ public class Menu extends javax.swing.JFrame {
         escritorio.add(ConsultasView); 
         escritorio.moveToFront(ConsultasView); 
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+       System.exit(0);
+    }//GEN-LAST:event_jMenu5MouseClicked
 
     /***/
     public static void vistas() {

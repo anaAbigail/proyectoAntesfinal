@@ -13,12 +13,12 @@ import proyectoantesfinal.Vistas.Menu;
 public class ProbandoMetodosMain {
 
     public static void main(String[] args) {
-        //Menu.vistas();
-        
-        
-        Connection con = Conexion.getConexion();
+        Menu.vistas();
+       
+      
+      /*
          AlumnoData probar = new AlumnoData();
-         /*
+         
          //Metodo guardarAlumno
         Alumno Yadhira = new Alumno(94327475, "Rebaza", " Yadhira ", LocalDate.of(2003, 03,01), true);
         
@@ -53,7 +53,7 @@ public class ProbandoMetodosMain {
           for(Alumno alumno : listaDeAlumno){
               System.out.println(alumno.getNombre());
               
-          }*/
+          }
           
         //Método modificarAlumno
         
@@ -72,12 +72,12 @@ public class ProbandoMetodosMain {
             System.out.println("No se escontró el alumno que desea modificar ");
         }
         
-        /*
-        //Método eliminar alumno 
-        int IdEliminar= 3; //se remplaza
-        probar.eliminarAlumno(IdEliminar);
         
-       */ 
+        //Método eliminar alumno 
+        int IdEliminar= 1; //se remplaza
+        probar.eliminarAlumno(IdEliminar);
+        */
+        
     }  
     
       
