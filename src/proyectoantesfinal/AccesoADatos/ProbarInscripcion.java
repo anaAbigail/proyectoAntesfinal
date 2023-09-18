@@ -12,6 +12,8 @@ public class ProbarInscripcion {
      
      //PROBANDO METODOS INSCRIPCION
      // Crear una instancia de la clase IncripcionAdata
+        AlumnoData ad=new AlumnoData();
+        MateriaData ms =new MateriaData();
         IncripcionAdata ProbarInscripcion = new IncripcionAdata();
 
         // Ejemplo de cómo guardar una inscripción

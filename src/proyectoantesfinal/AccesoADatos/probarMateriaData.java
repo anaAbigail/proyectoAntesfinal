@@ -4,6 +4,7 @@
  */
 package proyectoantesfinal.AccesoADatos;
 
+import java.sql.Connection;
 import proyectoantesfinal.Entidades.Materia;
 
 /**
@@ -12,8 +13,9 @@ import proyectoantesfinal.Entidades.Materia;
  */
 public class probarMateriaData {
     public static void main(String[] args) {
+        Connection con = Conexion.getConexion();
         MateriaData probar =new MateriaData();
-        Materia mat =new Materia("matematica", 2019, true); 
+        Materia mat =new Materia(12, "matematica", 2019, true); 
         probar.guardarMateria(mat);
     
     }

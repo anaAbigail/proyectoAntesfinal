@@ -94,6 +94,11 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
         jButton3.setForeground(new java.awt.Color(0, 0, 0));
         jButton3.setText("Guardar");
         jButton3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(204, 204, 255));
         jButton4.setForeground(new java.awt.Color(0, 0, 0));
@@ -239,6 +244,10 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
     private void jCalendarioAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jCalendarioAncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_jCalendarioAncestorAdded
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

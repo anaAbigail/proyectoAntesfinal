@@ -111,6 +111,11 @@ public class MateriaFormuView extends javax.swing.JInternalFrame {
         BotonBuscar.setMaximumSize(new java.awt.Dimension(76, 26));
         BotonBuscar.setMinimumSize(new java.awt.Dimension(76, 26));
         BotonBuscar.setPreferredSize(new java.awt.Dimension(76, 26));
+        BotonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonBuscarActionPerformed(evt);
+            }
+        });
 
         RadioButtonEstado.setBackground(new java.awt.Color(255, 255, 255));
         RadioButtonEstado.setForeground(new java.awt.Color(255, 255, 255));
@@ -254,6 +259,10 @@ public class MateriaFormuView extends javax.swing.JInternalFrame {
     private void ButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ButtonEliminarActionPerformed
+
+    private void BotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonBuscarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonBuscar;
