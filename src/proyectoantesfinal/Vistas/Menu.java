@@ -269,8 +269,8 @@ public class Menu extends javax.swing.JFrame {
         escritorio.moveToFront(ConsultasView); 
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    /** @param args the command line arguments*/
-    public static void main(String args[]) {
+    /***/
+    public static void vistas() {
       
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
