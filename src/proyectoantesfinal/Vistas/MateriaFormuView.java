@@ -11,8 +11,7 @@ package proyectoantesfinal.Vistas;
 public class MateriaFormuView extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form MateriaFormuView
-     */
+     * Creates new form MateriaFormuView*/
     public MateriaFormuView() {
         initComponents();
     }
