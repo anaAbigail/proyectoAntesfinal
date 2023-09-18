@@ -26,7 +26,43 @@ public class ProbandoMetodosMain {
         }else{
             System.out.println("Alumno no encontrado");  
         }
-   //terminar
+       // metodo buscarAlumnoPorDni 
+       int busquedaxDni = 94327574;
+        Alumno alumnoPorDni= probar.buscarAlumnoPorDni(busquedaxDni);
+         if (alumnoPorDni!= null ){
+             System.out.println("Alumno encontrado por DNI: ");
+         }else{
+             System.out.println("Alumno no encontrado por DNI: ");
+         }
+             
+          //Metodo listar alumnos 
+          
+          List <Alumno> listaDeAlumno = probar.listarAlumnos();
+          System.out.println("Lista de Alumnos ");
+          for(Alumno alumno : listaDeAlumno){
+              System.out.println(alumno.getNombre());
+              
+          }
+          
+        //Método modificarAlumno
+        
+        int IdAModificar =2; //esto debo remplazar 
+        Alumno alumnoAModificar =
+                
+                probar.buscarAlumno(IdAModificar);
+        if (alumnoAModificar!=null) {
+            alumnoAModificar.setNombre("El nombre nuevo es ");
+            probar.modificarAlumno(alumnoAModificar);
+        } else {
+            System.out.println("No se escontró el alumno que desea modificar ");
+        }
+        
+        
+        //Método eliminar alumno 
+        int IdEliminar= 3; //se remplaza
+        probar.eliminarAlumno(IdEliminar);
+        
+        
     }  
  //---------------------------------------------------------------------------------       
        
