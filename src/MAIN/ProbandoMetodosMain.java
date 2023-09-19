@@ -78,9 +78,15 @@ public class ProbandoMetodosMain {
         probar.eliminarAlumno(IdEliminar);
         */
     
+      /*---------------------------------------------------------------------------------------------*/
       
-      
-      
+                             //Probar metodos MateriData (enzo)
+                             
+       //crear instancia de MateriData 
+       
+       
+       
+       //GuardarMateria
       
     }  
     
