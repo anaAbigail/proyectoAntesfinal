@@ -6,22 +6,24 @@ import java.time.LocalDate;
 import java.util.List;
 import proyectoantesfinal.AccesoADatos.AlumnoData;
 import proyectoantesfinal.AccesoADatos.Conexion;
+import proyectoantesfinal.AccesoADatos.MateriaData;
 import proyectoantesfinal.Entidades.Alumno;
+import proyectoantesfinal.Entidades.Materia;
 import proyectoantesfinal.Vistas.Menu;
 
 /*  @author Programita  */
 public class ProbandoMetodosMain {
 
     public static void main(String[] args) {
-        Menu.vistas();
+        //Menu.vistas();
        
         //YadhiException
       
-      /*
+      
          AlumnoData probar = new AlumnoData();
          
          //Metodo guardarAlumno
-        Alumno Yadhira = new Alumno(94327475, "Rebaza", " Yadhira ", LocalDate.of(2003, 03,01), true);
+        /*Alumno Yadhira = new Alumno(94327475, "Rebaza", " Yadhira ", LocalDate.of(2003, 03,01), true);
         
         probar.guardarAlumno( Yadhira);
         
@@ -85,10 +87,26 @@ public class ProbandoMetodosMain {
                              
        //crear instancia de MateriData 
        
-       
+        MateriaData materiaData =new MateriaData();
        
        //GuardarMateria
-      
+        //Materia materia = new Materia("Matematica", 2006, true);
+       //materiaData.guardarMateria(materia);
+       
+        //Metodo buscarMateria
+        //Materia materiaRecuperada = materiaData.buscarMateria(1);
+        //System.out.println(materiaRecuperada);
+        
+        //metodo modificar materia
+        //Materia materiaAModificar = new Materia(1,"Literatura2", 2005, true);
+       // materiaData.modificarMateria(materiaAModificar);
+    
+       //metodo eliminarMateria
+       //materiaData.eliminarMateria(2);
+       
+       //metodo listarMateria
+        List<Materia> listadoDeMateria=materiaData.listarMaterias();
+        System.out.println("listado: "+listadoDeMateria);
     }  
     
       

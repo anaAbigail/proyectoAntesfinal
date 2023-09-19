@@ -38,14 +38,14 @@ public class MateriaData {
     public Materia buscarMateria(int id){
         
             Materia materia=null;
-            String sql= "select nombre, anioMateria from materia where idMateria = ? and estado =1 ";
+            String sql= "select idMateria, nombre, anioMateria, estado from materia where idMateria = ? and estado =1 ";
             try {    
                 PreparedStatement ps = con.prepareStatement(sql);
                 ps.setInt(1, id);
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()){
                     materia=new Materia();
-                    materia.setIdMateria(id);
+                    materia.setIdMateria(rs.getInt("idMateria"));
                     materia.setNombre(rs.getString("nombre"));
                     materia.setAnioMateria(rs.getInt("anioMateria"));
                     materia.setEstado(rs.getBoolean("estado"));
@@ -99,7 +99,6 @@ public class MateriaData {
             JOptionPane.showMessageDialog(null, "No se pudo acceder a la tabla Materia"+ ex.getMessage());
         }
     }
-    
     
     public List<Materia> listarMaterias(){
            List<Materia> materias = new ArrayList<>();
