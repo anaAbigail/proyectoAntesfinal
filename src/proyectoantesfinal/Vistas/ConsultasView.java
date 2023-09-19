@@ -7,17 +7,23 @@ package proyectoantesfinal.Vistas;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import proyectoantesfinal.AccesoADatos.AlumnoData;
 import proyectoantesfinal.AccesoADatos.MateriaData;
+import proyectoantesfinal.Entidades.Alumno;
+import proyectoantesfinal.Entidades.Inscripcion;
 import proyectoantesfinal.Entidades.Materia;
 
 /**@author Programita */
 
 public class ConsultasView extends javax.swing.JInternalFrame {
     private DefaultTableModel model=new DefaultTableModel();
+    Materia materia = new Materia();
+        Alumno alumno = new Alumno();
     
     public ConsultasView() {
         initComponents();
         armarcabezera();
+        
         listarMateria.setSelectedItem(1);
         
         
@@ -73,7 +79,6 @@ public class ConsultasView extends javax.swing.JInternalFrame {
         TitleCodigo.setForeground(new java.awt.Color(0, 0, 0));
         TitleCodigo.setText("Seleccione un materia");
 
-        listarMateria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         listarMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listarMateriaActionPerformed(evt);
@@ -169,7 +174,16 @@ public class ConsultasView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void listarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarMateriaActionPerformed
-        // TODO add your handling code here:
+        Materia materias = (Materia) listarMateria.getSelectedItem();
+        if(materias == null ){return;}
+        int selectedRow = TablaListas.getSelectedRow();
+        int filaS=TablaListas.getSelectedRow();
+        
+        if (filaS!=-1){
+            int codigo = Integer.parseInt(TablaListas.getValueAt(selectedRow, 2).toString());
+            AlumnoData alumnos = new AlumnoData();
+            
+        }
     }//GEN-LAST:event_listarMateriaActionPerformed
     private void armarcabezera(){
         
@@ -178,6 +192,14 @@ public class ConsultasView extends javax.swing.JInternalFrame {
         model.addColumn("DNI");
         model.addColumn("Nota");
         TablaListas.setModel(model);
+        
+    }
+    public void cargarDatos(List<Inscripcion> inscripcions){
+         
+        for(Inscripcion inscripcion : inscripcions){
+            
+        model.addRow(new Object[]{inscripcion.getAlumno().getNombre(),inscripcion.getAlumno().getApellido(),inscripcion.getAlumno().getDni(),inscripcion.getNota()});
+        }
         
     }
 
@@ -191,7 +213,7 @@ public class ConsultasView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JComboBox<String> listarMateria;
+    private javax.swing.JComboBox<Materia> listarMateria;
     // End of variables declaration//GEN-END:variables
 
 }
