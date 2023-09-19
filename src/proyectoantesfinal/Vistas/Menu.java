@@ -201,6 +201,11 @@ public class Menu extends javax.swing.JFrame {
                 jMenu5MouseClicked(evt);
             }
         });
+        jMenu5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu5ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
@@ -280,6 +285,10 @@ public class Menu extends javax.swing.JFrame {
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
        System.exit(0);
     }//GEN-LAST:event_jMenu5MouseClicked
+
+    private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu5ActionPerformed
 
     /***/
     public static void vistas() {
