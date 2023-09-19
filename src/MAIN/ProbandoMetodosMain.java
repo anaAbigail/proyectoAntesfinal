@@ -77,7 +77,11 @@ public class ProbandoMetodosMain {
         int IdEliminar= 1; //se remplaza
         probar.eliminarAlumno(IdEliminar);
         */
-        
+    
+      
+      
+      
+      
     }  
     
       

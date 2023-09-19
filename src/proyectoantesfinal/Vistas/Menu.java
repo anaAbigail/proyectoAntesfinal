@@ -26,16 +26,7 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImageIcon icon= new ImageIcon(getClass().getResource("Fondo.jpg"));
-        Image img=icon.getImage();
-        escritorio = new javax.swing.JDesktopPane(){
-
-            public void paintComponent(Graphics g)
-            {
-                g.drawImage(img,0,0,getWidth(),getHeight(),this);
-
-            }
-        };
+        escritorio = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -292,7 +283,7 @@ public class Menu extends javax.swing.JFrame {
 
     /***/
     public static void vistas() {
-      
+      //HOLA
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

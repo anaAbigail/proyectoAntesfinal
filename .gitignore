@@ -30,3 +30,4 @@ nbproject/private/private.properties
 src/proyectoantesfinal/AccesoADatos/ProbarInscripcion.java
 src/proyectoantesfinal/Vistas/ActualizacionNotasFormuView.form
 src/proyectoantesfinal/Vistas/AlumnoFormuView.form
+*.properties
