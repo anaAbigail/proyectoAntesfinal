@@ -271,7 +271,7 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-        // TODO add your handling code here:
+      this.dispose();  // TODO add your handling code here:
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbotonEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbotonEstadoActionPerformed

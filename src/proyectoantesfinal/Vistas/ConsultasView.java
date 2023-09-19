@@ -147,7 +147,7 @@ public class ConsultasView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void listarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarMateriaActionPerformed
