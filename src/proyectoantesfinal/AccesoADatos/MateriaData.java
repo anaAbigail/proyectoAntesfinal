@@ -28,6 +28,8 @@ public class MateriaData {
             ps.setInt(2, materia.getAnioMateria());
             ps.setBoolean(3, materia.isEstado());
             ps.executeUpdate(); 
+            JOptionPane.showMessageDialog(null, "Materia guardada con éxito");
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "error al guardar materia");
         }

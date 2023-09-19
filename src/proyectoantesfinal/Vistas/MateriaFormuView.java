@@ -4,6 +4,10 @@
  */
 package proyectoantesfinal.Vistas;
 
+import javax.swing.JOptionPane;
+import proyectoantesfinal.AccesoADatos.MateriaData;
+import proyectoantesfinal.Entidades.Materia;
+
 /**
  *
  * @author Programita
@@ -236,11 +240,13 @@ public class MateriaFormuView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSalirActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_ButtonSalirActionPerformed
 
     private void ButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonNuevoActionPerformed
-        // TODO add your handling code here:
+        MateriaData materiaNueva = new MateriaData();
+        Materia materia = new Materia(TextForNombre.getText(), Integer.parseInt(TextForAnio.getText()), RadioButtonEstado.isSelected());
+        materiaNueva.guardarMateria(materia);
     }//GEN-LAST:event_ButtonNuevoActionPerformed
 
     private void TextForAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextForAnioActionPerformed
@@ -248,7 +254,7 @@ public class MateriaFormuView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_TextForAnioActionPerformed
 
     private void ButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonGuardarActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_ButtonGuardarActionPerformed
 
     private void RadioButtonEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioButtonEstadoActionPerformed
@@ -260,7 +266,16 @@ public class MateriaFormuView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_ButtonEliminarActionPerformed
 
     private void BotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarActionPerformed
-        // TODO add your handling code here:
+        MateriaData materiaNueva = new MateriaData();
+        int cod = Integer.parseInt(TextForCodigo.getText());
+        Materia materia = materiaNueva.buscarMateria(cod);
+        if (materia!=null) {
+            TextForNombre.setText(materia.getNombre());
+            TextForAnio.setText(Integer.toString(materia.getAnioMateria()));
+            //so easy (soy ese)
+        }else{
+            JOptionPane.showMessageDialog(null, "La materia no existe");
+        }
     }//GEN-LAST:event_BotonBuscarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

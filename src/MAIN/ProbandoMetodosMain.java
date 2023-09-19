@@ -15,6 +15,7 @@ public class ProbandoMetodosMain {
     public static void main(String[] args) {
         Menu.vistas();
        
+        //YadhiException
       
       /*
          AlumnoData probar = new AlumnoData();
