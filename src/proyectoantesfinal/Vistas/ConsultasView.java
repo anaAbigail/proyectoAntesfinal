@@ -5,12 +5,37 @@
 
 package proyectoantesfinal.Vistas;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import proyectoantesfinal.AccesoADatos.AlumnoData;
+import proyectoantesfinal.AccesoADatos.InscripcionData;
+import proyectoantesfinal.AccesoADatos.MateriaData;
+import proyectoantesfinal.Entidades.Alumno;
+import proyectoantesfinal.Entidades.Inscripcion;
+import proyectoantesfinal.Entidades.Materia;
+
 /**@author Programita */
 
 public class ConsultasView extends javax.swing.JInternalFrame {
-
+    private DefaultTableModel model=new DefaultTableModel();
+    Materia materia = new Materia();
+        Alumno alumno = new Alumno();
+    
     public ConsultasView() {
         initComponents();
+        armarcabezera();
+        
+        listarMateria.setSelectedItem(1);
+        
+        
+          MateriaData materiasData = new MateriaData();
+        List<Materia> materias= materiasData.listarMaterias();
+
+        listarMateria.removeAllItems();
+        
+        materias.forEach((materia) -> {
+            listarMateria.addItem(materia);
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -55,7 +80,6 @@ public class ConsultasView extends javax.swing.JInternalFrame {
         TitleCodigo.setForeground(new java.awt.Color(0, 0, 0));
         TitleCodigo.setText("Seleccione un materia");
 
-        listarMateria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         listarMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listarMateriaActionPerformed(evt);
@@ -147,13 +171,47 @@ public class ConsultasView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void listarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarMateriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_listarMateriaActionPerformed
+        Materia materias = (Materia) listarMateria.getSelectedItem();
 
+        if(materias == null ){return;}
+        int selectedRow = TablaListas.getSelectedRow();
+        int filaS=TablaListas.getSelectedRow();
+        
+        if (filaS!=-1){
+            int codigo = Integer.parseInt(TablaListas.getValueAt(selectedRow, 2).toString());
+            InscripcionData inscripcionData = new InscripcionData();
+            Inscripcion inscripcionAlumno = new Inscripcion();
+            inscripcionAlumno.getNota();
+            inscripcionAlumno.getAlumno();
+            inscripcionAlumno.getMateria();
+            /*
+            List<Inscripcion> updatedMaterias = inscripcionData.obtenerAlumnosXMateria(inscripcionAlumno.getMateria().getIdMateria());
+            cargarDatos(updatedMaterias);
+            */
+        }
+    }//GEN-LAST:event_listarMateriaActionPerformed
+    private void armarcabezera(){
+        
+        model.addColumn("Nombre");
+        model.addColumn("Apellido");      
+        model.addColumn("DNI");
+        model.addColumn("Nota");
+        TablaListas.setModel(model);
+        
+    }
+    
+    public void cargarDatos(List<Inscripcion> inscripcions){
+        model.setRowCount(0);
+        for(Inscripcion inscripcion : inscripcions){
+            
+        model.addRow(new Object[]{inscripcion.getAlumno().getNombre(),inscripcion.getAlumno().getApellido(),inscripcion.getAlumno().getDni(),inscripcion.getNota()});
+        }
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaListas;
@@ -165,7 +223,7 @@ public class ConsultasView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JComboBox<String> listarMateria;
+    private javax.swing.JComboBox<Materia> listarMateria;
     // End of variables declaration//GEN-END:variables
 
 }

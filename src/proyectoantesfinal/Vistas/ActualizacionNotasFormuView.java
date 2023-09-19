@@ -152,7 +152,7 @@ public class ActualizacionNotasFormuView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
-        // TODO add your handling code here:
+     this.dispose();
     }//GEN-LAST:event_BotonSalirActionPerformed
 
     private void ListarnotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarnotasActionPerformed

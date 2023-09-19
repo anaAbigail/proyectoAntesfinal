@@ -4,6 +4,11 @@
  */
 package proyectoantesfinal.Vistas;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import proyectoantesfinal.AccesoADatos.AlumnoData;
+import proyectoantesfinal.Entidades.Alumno;
+
 /**
  *
  * @author Programita
@@ -38,11 +43,12 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
         jbEliminar = new javax.swing.JButton();
         jbGuardar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
-        jtDocumentoAlumno = new javax.swing.JTextField();
-        jtNombreAlumno = new javax.swing.JTextField();
-        jtApellidoAlumno = new javax.swing.JTextField();
+        JTdocumentoAlumno = new javax.swing.JTextField();
+        JTnombreAlumno = new javax.swing.JTextField();
+        JTapellidoAlumno = new javax.swing.JTextField();
         jbotonEstado = new javax.swing.JRadioButton();
         jdFechaNacimiento = new com.toedter.calendar.JDateChooser();
+        BotonBuscar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -110,16 +116,21 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
             }
         });
 
-        jtDocumentoAlumno.setBackground(new java.awt.Color(228, 228, 228));
+        JTdocumentoAlumno.setBackground(new java.awt.Color(228, 228, 228));
 
-        jtNombreAlumno.setBackground(new java.awt.Color(228, 228, 228));
-        jtNombreAlumno.addActionListener(new java.awt.event.ActionListener() {
+        JTnombreAlumno.setBackground(new java.awt.Color(228, 228, 228));
+        JTnombreAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtNombreAlumnoActionPerformed(evt);
+                JTnombreAlumnoActionPerformed(evt);
             }
         });
 
-        jtApellidoAlumno.setBackground(new java.awt.Color(228, 228, 228));
+        JTapellidoAlumno.setBackground(new java.awt.Color(228, 228, 228));
+        JTapellidoAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTapellidoAlumnoActionPerformed(evt);
+            }
+        });
 
         jbotonEstado.setBackground(new java.awt.Color(255, 255, 255));
         jbotonEstado.setForeground(new java.awt.Color(255, 255, 255));
@@ -127,6 +138,19 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
         jbotonEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbotonEstadoActionPerformed(evt);
+            }
+        });
+
+        BotonBuscar.setBackground(new java.awt.Color(204, 204, 255));
+        BotonBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        BotonBuscar.setText("Buscar");
+        BotonBuscar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED, new java.awt.Color(102, 102, 255), new java.awt.Color(102, 102, 255), new java.awt.Color(153, 153, 255), new java.awt.Color(153, 102, 255)));
+        BotonBuscar.setMaximumSize(new java.awt.Dimension(76, 26));
+        BotonBuscar.setMinimumSize(new java.awt.Dimension(76, 26));
+        BotonBuscar.setPreferredSize(new java.awt.Dimension(76, 26));
+        BotonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonBuscarActionPerformed(evt);
             }
         });
 
@@ -152,9 +176,12 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
                                 .addGap(51, 51, 51)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jbotonEstado)
-                                    .addComponent(jtNombreAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtDocumentoAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtApellidoAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(JTnombreAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(JTdocumentoAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(BotonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(JTapellidoAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(156, 156, 156)
                         .addComponent(JLformualumno))
@@ -170,7 +197,7 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
                                 .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(26, 26, 26)
                                 .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,16 +208,17 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jtDocumentoAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JTdocumentoAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jtApellidoAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JTapellidoAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jtNombreAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
+                    .addComponent(JTnombreAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jbotonEstado))
@@ -226,21 +254,34 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
-        // TODO add your handling code here:
+     int dni=Integer.parseInt(JTdocumentoAlumno.getText());
+     String apellido = JTapellidoAlumno.getText();
+     String nombre = JTnombreAlumno.getText();
+     boolean estado = jbotonEstado.isSelected();
+   java.util.Date utilDate= jdFechaNacimiento.getDate();
+   java.sql.Date sqlDate= new java.sql.Date(utilDate.getTime());
+     LocalDate fechaNac = sqlDate.toLocalDate();
+     
+        Alumno alumnito = new Alumno(dni,apellido, nombre,fechaNac, estado);
+     AlumnoData agregar =new AlumnoData();
+      agregar.guardarAlumno(alumnito);
+
+
+// TODO add your handling code here:
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-        // TODO add your handling code here:
+      this.dispose();  // TODO add your handling code here:
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbotonEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbotonEstadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbotonEstadoActionPerformed
 
-    private void jtNombreAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNombreAlumnoActionPerformed
+    private void JTnombreAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTnombreAlumnoActionPerformed
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_jtNombreAlumnoActionPerformed
+    }//GEN-LAST:event_JTnombreAlumnoActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -254,9 +295,30 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbGuardarActionPerformed
 
+    private void JTapellidoAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTapellidoAlumnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTapellidoAlumnoActionPerformed
+
+    private void BotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarActionPerformed
+        AlumnoData boton = new AlumnoData();
+        int cod = Integer.parseInt(JTdocumentoAlumno.getText());
+        Alumno alumnito = boton.buscarAlumnoPorDni(cod);
+        
+        if (alumnito != null){
+            JTapellidoAlumno.setText(alumnito.getApellido());
+            JTnombreAlumno.setText(alumnito.getNombre());
+            jbotonEstado.setSelected(alumnito.isEstado());
+            jdFechaNacimiento.setDate(Date.valueOf(alumnito.getFechaNacimiento()));
+        }
+    }//GEN-LAST:event_BotonBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonBuscar;
     private javax.swing.JLabel JLformualumno;
+    private javax.swing.JTextField JTapellidoAlumno;
+    private javax.swing.JTextField JTdocumentoAlumno;
+    private javax.swing.JTextField JTnombreAlumno;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -270,9 +332,6 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbSalir;
     private javax.swing.JRadioButton jbotonEstado;
     private com.toedter.calendar.JDateChooser jdFechaNacimiento;
-    private javax.swing.JTextField jtApellidoAlumno;
-    private javax.swing.JTextField jtDocumentoAlumno;
-    private javax.swing.JTextField jtNombreAlumno;
     // End of variables declaration//GEN-END:variables
 
 
