@@ -8,6 +8,7 @@ package proyectoantesfinal.Vistas;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import proyectoantesfinal.AccesoADatos.AlumnoData;
+import proyectoantesfinal.AccesoADatos.InscripcionData;
 import proyectoantesfinal.AccesoADatos.MateriaData;
 import proyectoantesfinal.Entidades.Alumno;
 import proyectoantesfinal.Entidades.Inscripcion;
@@ -175,14 +176,22 @@ public class ConsultasView extends javax.swing.JInternalFrame {
 
     private void listarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarMateriaActionPerformed
         Materia materias = (Materia) listarMateria.getSelectedItem();
+
         if(materias == null ){return;}
         int selectedRow = TablaListas.getSelectedRow();
         int filaS=TablaListas.getSelectedRow();
         
         if (filaS!=-1){
             int codigo = Integer.parseInt(TablaListas.getValueAt(selectedRow, 2).toString());
-            AlumnoData alumnos = new AlumnoData();
-            
+            InscripcionData inscripcionData = new InscripcionData();
+            Inscripcion inscripcionAlumno = new Inscripcion();
+            inscripcionAlumno.getNota();
+            inscripcionAlumno.getAlumno();
+            inscripcionAlumno.getMateria();
+            /*
+            List<Inscripcion> updatedMaterias = inscripcionData.obtenerAlumnosXMateria(inscripcionAlumno.getMateria().getIdMateria());
+            cargarDatos(updatedMaterias);
+            */
         }
     }//GEN-LAST:event_listarMateriaActionPerformed
     private void armarcabezera(){
@@ -194,8 +203,9 @@ public class ConsultasView extends javax.swing.JInternalFrame {
         TablaListas.setModel(model);
         
     }
+    
     public void cargarDatos(List<Inscripcion> inscripcions){
-         
+        model.setRowCount(0);
         for(Inscripcion inscripcion : inscripcions){
             
         model.addRow(new Object[]{inscripcion.getAlumno().getNombre(),inscripcion.getAlumno().getApellido(),inscripcion.getAlumno().getDni(),inscripcion.getNota()});

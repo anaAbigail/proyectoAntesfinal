@@ -12,13 +12,13 @@ import proyectoantesfinal.Entidades.Inscripcion;
 import proyectoantesfinal.Entidades.Materia;
 
 /* @author Programita  */
-public class IncripcionData {
+public class InscripcionData {
 
     private Connection con = null;
     private MateriaData matData;
     private AlumnoData aluData;
 
-    public IncripcionData() {
+    public InscripcionData() {
 
         con = Conexion.getConexion();
         matData = new MateriaData();
