@@ -111,7 +111,7 @@ public class MateriaData {
                    Materia materia = new Materia() ;
                    materia.setIdMateria(rs.getInt("idMateria"));
                    materia.setNombre(rs.getString("nombre"));
-                   materia.setAnioMateria(rs.getInt("año"));
+                   materia.setAnioMateria(rs.getInt("anioMateria"));
                    materia.setEstado(rs.getBoolean("estado"));
                    materias.add(materia);
                }

@@ -5,12 +5,30 @@
 
 package proyectoantesfinal.Vistas;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import proyectoantesfinal.AccesoADatos.MateriaData;
+import proyectoantesfinal.Entidades.Materia;
+
 /**@author Programita */
 
 public class ConsultasView extends javax.swing.JInternalFrame {
-
+    private DefaultTableModel model=new DefaultTableModel();
+    
     public ConsultasView() {
         initComponents();
+        armarcabezera();
+        listarMateria.setSelectedItem(1);
+        
+        
+          MateriaData materiasData = new MateriaData();
+        List<Materia> materias= materiasData.listarMaterias();
+
+        listarMateria.removeAllItems();
+        
+        materias.forEach((materia) -> {
+            listarMateria.addItem(materia);
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -153,7 +171,15 @@ public class ConsultasView extends javax.swing.JInternalFrame {
     private void listarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarMateriaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_listarMateriaActionPerformed
-
+    private void armarcabezera(){
+        
+        model.addColumn("Nombre");
+        model.addColumn("Apellido");      
+        model.addColumn("DNI");
+        model.addColumn("Nota");
+        TablaListas.setModel(model);
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaListas;
