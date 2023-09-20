@@ -313,6 +313,7 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
         eliminar.eliminarAlumno(Integer.parseInt(JTdocumentoAlumno.getText()));
         JTdocumentoAlumno.setText ("");
         
+        
     }//GEN-LAST:event_jbEliminarActionPerformed
 
 
