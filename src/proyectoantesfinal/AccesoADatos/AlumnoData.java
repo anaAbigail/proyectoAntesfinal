@@ -166,7 +166,7 @@ public class AlumnoData {
     public void eliminarAlumno(int dni) {
 
         try {
-            String sql = "UPDATE alumno SET estado = 0 WHERE dni = ? ";
+            String sql = "UPDATE alumno SET estado = 0 WHERE idAlumno = ? ";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, dni);
             int fila = ps.executeUpdate();

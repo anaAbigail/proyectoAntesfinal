@@ -304,13 +304,14 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
             JTnombreAlumno.setText(alumnito.getNombre());
             jbotonEstado.setSelected(alumnito.isEstado());
             jdFechaNacimiento.setDate(Date.valueOf(alumnito.getFechaNacimiento()));
+            
         }
     }//GEN-LAST:event_BotonBuscarActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
         AlumnoData eliminar = new AlumnoData();
-        int dni =Integer.parseInt(JTdocumentoAlumno.getText());
-        eliminar.eliminarAlumno(dni);
+        eliminar.eliminarAlumno(Integer.parseInt(JTdocumentoAlumno.getText()));
+        JTdocumentoAlumno.setText ("");
         
     }//GEN-LAST:event_jbEliminarActionPerformed
 
