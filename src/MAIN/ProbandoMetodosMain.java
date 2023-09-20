@@ -6,8 +6,10 @@ import java.time.LocalDate;
 import java.util.List;
 import proyectoantesfinal.AccesoADatos.AlumnoData;
 import proyectoantesfinal.AccesoADatos.Conexion;
+import proyectoantesfinal.AccesoADatos.InscripcionData;
 import proyectoantesfinal.AccesoADatos.MateriaData;
 import proyectoantesfinal.Entidades.Alumno;
+import proyectoantesfinal.Entidades.Inscripcion;
 import proyectoantesfinal.Entidades.Materia;
 import proyectoantesfinal.Vistas.Menu;
 
@@ -105,8 +107,31 @@ public class ProbandoMetodosMain {
        //materiaData.eliminarMateria(2);
        
        //metodo listarMateria
-        List<Materia> listadoDeMateria=materiaData.listarMaterias();
-        System.out.println("listado: "+listadoDeMateria);
+        //List<Materia> listadoDeMateria=materiaData.listarMaterias();
+        //System.out.println("listado: "+listadoDeMateria);
+        
+        //-----------------------------------------------------------------------------------------------
+        
+        InscripcionData inscripcionData=new InscripcionData();
+        
+                              //metodo guardarInscripcion
+        //Alumno yadhira = new Alumno(33,94327475, "Rebaza", " Yadhira ", LocalDate.of(2003, 03,01), true);
+        //probar.guardarAlumno( yadhira);               
+        //Materia materia = new Materia(4,"Matematica", 2006, true);
+        //Inscripcion inscripcion = new Inscripcion(yadhira, materia, 10);                  
+        //inscripcionData.guardarInscripcion(inscripcion);
+        
+                           //metodo obtenerInscripciones
+         
+        //List<Inscripcion>listaDeInscripciones=inscripcionData.obtenerInscripciones();
+        //System.out.println("lista: "+listaDeInscripciones);
+                         
+                           //metodo obtenerInscripcionesPorAlumno
+        //List<Inscripcion>listaInscripcionPorAlumno=inscripcionData.obtenerInscripcionesPorAlumno(33);
+        //System.out.println("lista: "+listaInscripcionPorAlumno);
+        
+                          //metodo obtenerMateriaCursadas
+                         
     }  
     
       
