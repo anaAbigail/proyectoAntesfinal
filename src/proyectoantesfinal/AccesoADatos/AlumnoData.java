@@ -163,16 +163,18 @@ public class AlumnoData {
 
     }
 
-    public void eliminarAlumno(int id) {
+    public void eliminarAlumno(int dni) {
 
         try {
-            String sql = "UPDATE alumno SET estado = 0 WHERE idAlumno = ? ";
+            String sql = "UPDATE alumno SET estado = 0 WHERE dni = ? ";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
+            ps.setInt(1, dni);
             int fila = ps.executeUpdate();
 
             if (fila == 1) {
                 JOptionPane.showMessageDialog(null, " Se eliminó el alumno.");
+            }else{
+                 JOptionPane.showMessageDialog(null, "Documento no encontrado o no registrado.");
             }
             ps.close();
         } catch (SQLException e) {
