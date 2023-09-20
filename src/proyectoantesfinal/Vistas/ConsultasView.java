@@ -7,7 +7,6 @@ package proyectoantesfinal.Vistas;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import proyectoantesfinal.AccesoADatos.AlumnoData;
 import proyectoantesfinal.AccesoADatos.InscripcionData;
 import proyectoantesfinal.AccesoADatos.MateriaData;
 import proyectoantesfinal.Entidades.Alumno;
@@ -18,8 +17,6 @@ import proyectoantesfinal.Entidades.Materia;
 
 public class ConsultasView extends javax.swing.JInternalFrame {
     private DefaultTableModel model=new DefaultTableModel();
-    Materia materia = new Materia();
-        Alumno alumno = new Alumno();
     
     public ConsultasView() {
         initComponents();
@@ -175,42 +172,34 @@ public class ConsultasView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void listarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarMateriaActionPerformed
-        Materia materias = (Materia) listarMateria.getSelectedItem();
-
+        Materia materias = (Materia) listarMateria.getSelectedItem();        
         if(materias == null ){return;}
-        int selectedRow = TablaListas.getSelectedRow();
-        int filaS=TablaListas.getSelectedRow();
+        //Conseguir idMateria
+        int idMateria = materias.getIdMateria();
+               
+            InscripcionData alumnoMateria = new InscripcionData();
+            
+            List<Alumno> inscripciones= alumnoMateria.obtenerAlumnosXMateria(idMateria);
+            cargarDatos(inscripciones);
         
-        if (filaS!=-1){
-            int codigo = Integer.parseInt(TablaListas.getValueAt(selectedRow, 2).toString());
-            InscripcionData inscripcionData = new InscripcionData();
-            Inscripcion inscripcionAlumno = new Inscripcion();
-            inscripcionAlumno.getNota();
-            inscripcionAlumno.getAlumno();
-            inscripcionAlumno.getMateria();
-            /*
-            List<Inscripcion> updatedMaterias = inscripcionData.obtenerAlumnosXMateria(inscripcionAlumno.getMateria().getIdMateria());
-            cargarDatos(updatedMaterias);
-            */
-        }
     }//GEN-LAST:event_listarMateriaActionPerformed
     private void armarcabezera(){
         
         model.addColumn("Nombre");
         model.addColumn("Apellido");      
         model.addColumn("DNI");
-        model.addColumn("Nota");
         TablaListas.setModel(model);
         
     }
     
-    public void cargarDatos(List<Inscripcion> inscripcions){
-        model.setRowCount(0);
-        for(Inscripcion inscripcion : inscripcions){
-            
-        model.addRow(new Object[]{inscripcion.getAlumno().getNombre(),inscripcion.getAlumno().getApellido(),inscripcion.getAlumno().getDni(),inscripcion.getNota()});
-        }
-        
+    public void cargarDatos(List<Alumno> alumnos){
+       model.setRowCount(0);
+    
+    
+    for (Alumno alumno : alumnos) {
+     
+        model.addRow(new Object[]{alumno.getNombre(), alumno.getApellido(), alumno.getDni()});
+    }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
