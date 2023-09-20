@@ -2,15 +2,32 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-
 package proyectoantesfinal.Vistas;
 
-/**@author Programita */
-
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import proyectoantesfinal.Entidades.Alumno;
+import proyectoantesfinal.AccesoADatos.InscripcionData;
+import proyectoantesfinal.Entidades.Materia;
+import proyectoantesfinal.AccesoADatos.MateriaData;
+import proyectoantesfinal.Entidades.Inscripcion;
+/**
+ * @author Programita
+ */
 public class InscripcionFormuView extends javax.swing.JInternalFrame {
+
+    private DefaultTableModel modelo = new DefaultTableModel();
 
     public InscripcionFormuView() {
         initComponents();
+    }
+   private void refreshTable(List<Materia> materias) {
+        modelo.setRowCount(0);
+
+        for (Materia materia : materias) {
+            modelo.addRow(new Object[]{materia.getNombre(), materia.getAnioMateria(), materia.getIdMateria()});
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -29,7 +46,7 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
         TitleCodigo = new javax.swing.JLabel();
         jMateriasInscriptas = new javax.swing.JRadioButton();
         jMateriaNoInscriptas = new javax.swing.JRadioButton();
-        listarAlumno = new javax.swing.JComboBox<>();
+        jListarAlumno = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaListas = new javax.swing.JTable();
@@ -116,22 +133,22 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
             }
         });
 
-        listarAlumno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        listarAlumno.addActionListener(new java.awt.event.ActionListener() {
+        jListarAlumno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jListarAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listarAlumnoActionPerformed(evt);
+                jListarAlumnoActionPerformed(evt);
             }
         });
 
         tablaListas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id", "Nombre", "Apellido"
             }
         ));
         jScrollPane3.setViewportView(tablaListas);
@@ -164,7 +181,7 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(TitleCodigo)
                                     .addGap(18, 18, 18)
-                                    .addComponent(listarAlumno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jListarAlumno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(jMateriasInscriptas)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -185,7 +202,7 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TitleCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(listarAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jListarAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addComponent(TitleNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -226,30 +243,152 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-       this.dispose();
+    this.dispose();      
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void botonInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInscribirActionPerformed
-        // TODO add your handling code here:
+       if(jMateriasInscriptas.isSelected()==false){    //Crear Alumno
+        Alumno alumnoInscribir = (Alumno) jListarAlumno.getSelectedItem();
+        if(alumnoInscribir == null ){return;}
+        InscripcionData materias = new InscripcionData();
+        int selectedRow = jTable1.getSelectedRow();
+        int filaS=jTable1.getSelectedRow();
+        
+        if (filaS!=-1){
+            //Crear Materia
+            int codigo = Integer.parseInt(jTable1.getValueAt(selectedRow, 2).toString());
+            MateriaData materiaData = new MateriaData();
+            Materia materia = materiaData.buscarMateria(codigo);
+            
+            if(materia!=null){
+            //Crear Inscripcion
+            Inscripcion inscripcion = new Inscripcion();
+            inscripcion.setAlumno(alumnoInscribir);
+            inscripcion.setMateria(materia);
+            inscripcion.setNota(0);
+            
+            //Crear una Inscripcion
+            InscripcionData inscripcionData = new InscripcionData();
+            inscripcionData.guardarInscripcion(inscripcion);
+            
+            //Refrescar la lista con materias NO Cursadas
+            List<Materia> updatedMaterias = inscripcionData.obtenerMateriasNOCursadas(alumnoInscribir.getIdAlumno());
+            refreshTable(updatedMaterias);
+            }
+        }
+    } 
     }//GEN-LAST:event_botonInscribirActionPerformed
 
     private void botonAnularInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnularInscripcionActionPerformed
-        // TODO add your handling code here:
+                                            
+    if(jMateriasInscriptas.isSelected()==true){
+        Alumno x = (Alumno) jListarAlumno.getSelectedItem();
+        if(x == null && jMateriaNoInscriptas.isSelected()==true){return;}
+        
+        int selectedRow = jTable1.getSelectedRow();
+        int filaS=jTable1.getSelectedRow();
+        
+        if (filaS!=-1){
+            //Fijar en que materia estamos
+            String materiaName = jTable1.getValueAt(selectedRow, 0).toString();
+            int codigo = Integer.parseInt(jTable1.getValueAt(selectedRow, 2).toString());
+          
+      
+        int confirmResult = JOptionPane.showConfirmDialog(
+            this,
+            "¿Desea borrar la inscripción?",
+            "Confirmar Borrado",
+            JOptionPane.YES_NO_OPTION
+                
+        );
+            if (confirmResult == JOptionPane.YES_OPTION) {
+            // Confirmo Seleccion
+            InscripcionData inscripcionData = new InscripcionData();
+            inscripcionData.borrarInscripcionMateriaAlumno(x.getIdAlumno(), codigo);
+
+            //Refresh de la lista
+            List<Materia> updatedMaterias = inscripcionData.obtenerMateriasCursadas(x.getIdAlumno());
+            refreshTable(updatedMaterias);
+        }
+            
+            
+              
+        }else{
+            JOptionPane.showMessageDialog(this, "Porfavor seleccione una fila");
+        }   
+    }// TODO add your handling code here:
     }//GEN-LAST:event_botonAnularInscripcionActionPerformed
 
     private void jMateriasInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMateriasInscriptasActionPerformed
-        // TODO add your handling code here:
+        Alumno selectedAlumno = (Alumno) jListarAlumno.getSelectedItem();
+        
+        InscripcionData materias = new InscripcionData();
+        if(selectedAlumno==null){
+            return;
+        }
+        modelo.setRowCount(0);
+        jTable1.removeAll();
+        
+          
+         List<Materia> materiasCursadas = materias.obtenerMateriasCursadas(selectedAlumno.getIdAlumno());
+         cargarDatos(materiasCursadas); // TODO add your handling code here:
     }//GEN-LAST:event_jMateriasInscriptasActionPerformed
 
     private void jMateriaNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMateriaNoInscriptasActionPerformed
-        // TODO add your handling code here:
+     Alumno selectedAlumno = (Alumno) jListarAlumno.getSelectedItem();
+        
+        InscripcionData materias = new InscripcionData();
+        if(selectedAlumno==null){
+            return;
+        }
+        modelo.setRowCount(0);
+        jTable1.removeAll();
+       
+            List<Materia> materiasNOCursadas =  materias.obtenerMateriasNOCursadas(selectedAlumno.getIdAlumno());
+            cargarDatos(materiasNOCursadas);
+               
+
     }//GEN-LAST:event_jMateriaNoInscriptasActionPerformed
 
-    private void listarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarAlumnoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_listarAlumnoActionPerformed
+    private void jListarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jListarAlumnoActionPerformed
+
+        Alumno selectedAlumno = (Alumno) jListarAlumno.getSelectedItem();
+        if (selectedAlumno == null) {
+            // podria agregar un mensaje de error 
+            return;
+        }
+
+        modelo.setRowCount(0); // Limpia la tabla
+
+        InscripcionData InscData = new InscripcionData();
+
+        if (jMateriasInscriptas.isSelected()) {
+            cargarDatos(InscData.obtenerMateriasCursadas(selectedAlumno.getIdAlumno()));
+        } else if (jMateriaNoInscriptas.isSelected()) {
+            cargarDatos(InscData.obtenerMateriasNOCursadas(selectedAlumno.getIdAlumno()));
+        }
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jListarAlumnoActionPerformed
 
 
+    private void armarcabezera() {
+
+        modelo.addColumn("Materia");
+        modelo.addColumn("Año");
+        modelo.addColumn("Codigo");
+        jTable1.setModel(modelo);
+
+    }
+
+
+    public void cargarDatos(List<Materia> materias) {
+        for (Materia materia : materias) {
+            modelo.addRow(new Object[]{materia.getNombre(), materia.getAnioMateria(), materia.getIdMateria()});
+        }
+
+    }
+///golaaaa
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TitleCodigo;
     private javax.swing.JLabel TitleGestionMateria;
@@ -257,6 +396,7 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
     private javax.swing.JButton botonAnularInscripcion;
     private javax.swing.JButton botonInscribir;
     private javax.swing.JButton botonSalir;
+    private javax.swing.JComboBox<String> jListarAlumno;
     private javax.swing.JRadioButton jMateriaNoInscriptas;
     private javax.swing.JRadioButton jMateriasInscriptas;
     private javax.swing.JPanel jPanel1;
@@ -265,7 +405,6 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JComboBox<String> listarAlumno;
     private javax.swing.JTable tablaListas;
     // End of variables declaration//GEN-END:variables
 
