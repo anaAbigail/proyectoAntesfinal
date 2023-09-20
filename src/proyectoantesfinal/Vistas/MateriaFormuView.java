@@ -261,7 +261,7 @@ public class MateriaFormuView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_ButtonGuardarActionPerformed
 
     private void RadioButtonEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioButtonEstadoActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_RadioButtonEstadoActionPerformed
 
     private void ButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEliminarActionPerformed
