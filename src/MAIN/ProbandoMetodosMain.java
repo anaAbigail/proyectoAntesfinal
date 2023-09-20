@@ -17,7 +17,7 @@ import proyectoantesfinal.Vistas.Menu;
 public class ProbandoMetodosMain {
 
     public static void main(String[] args) {
-        //Menu.vistas();
+        Menu.vistas();
        
         //YadhiException
       

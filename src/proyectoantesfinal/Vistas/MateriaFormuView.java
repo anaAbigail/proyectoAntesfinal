@@ -247,6 +247,9 @@ public class MateriaFormuView extends javax.swing.JInternalFrame {
         MateriaData materiaNueva = new MateriaData();
         Materia materia = new Materia(TextForNombre.getText(), Integer.parseInt(TextForAnio.getText()), RadioButtonEstado.isSelected());
         materiaNueva.guardarMateria(materia);
+        TextForNombre.setText("");
+        TextForAnio.setText("");
+        RadioButtonEstado.setSelected(false);
     }//GEN-LAST:event_ButtonNuevoActionPerformed
 
     private void TextForAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextForAnioActionPerformed
@@ -262,7 +265,10 @@ public class MateriaFormuView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_RadioButtonEstadoActionPerformed
 
     private void ButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEliminarActionPerformed
-        // TODO add your handling code here:
+        MateriaData materiaData = new MateriaData();
+        materiaData.eliminarMateria(Integer.parseInt(TextForCodigo.getText()));
+        TextForCodigo.setText("");
+        
     }//GEN-LAST:event_ButtonEliminarActionPerformed
 
     private void BotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarActionPerformed
@@ -272,7 +278,7 @@ public class MateriaFormuView extends javax.swing.JInternalFrame {
         if (materia!=null) {
             TextForNombre.setText(materia.getNombre());
             TextForAnio.setText(Integer.toString(materia.getAnioMateria()));
-            //so easy (soy ese)
+            RadioButtonEstado.setSelected(materia.isEstado());
         }else{
             JOptionPane.showMessageDialog(null, "La materia no existe");
         }
