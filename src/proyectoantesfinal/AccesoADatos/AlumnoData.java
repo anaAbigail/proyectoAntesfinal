@@ -20,7 +20,7 @@ public class AlumnoData {
     private Connection con = null;
 
     public AlumnoData() {
-
+     //hola
         con = Conexion.getConexion();
     }
 
