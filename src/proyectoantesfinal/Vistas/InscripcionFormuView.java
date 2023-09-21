@@ -7,6 +7,7 @@ package proyectoantesfinal.Vistas;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import proyectoantesfinal.AccesoADatos.AlumnoData;
 import proyectoantesfinal.Entidades.Alumno;
 import proyectoantesfinal.AccesoADatos.InscripcionData;
 import proyectoantesfinal.Entidades.Materia;
@@ -21,6 +22,19 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
 
     public InscripcionFormuView() {
         initComponents();
+        armarcabezera();
+        jMateriaNoInscriptas.setSelected(true);
+        listarAlumno.setSelectedItem(1);
+        
+        
+          AlumnoData alumnosData = new AlumnoData();
+        List<Alumno> alumnos= alumnosData.listarAlumnos();
+
+        listarAlumno.removeAllItems();
+        
+        alumnos.forEach((alumno) -> {
+            listarAlumno.addItem(alumno);
+        });
     }
    private void refreshTable(List<Materia> materias) {
         modelo.setRowCount(0);
@@ -34,8 +48,6 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         TitleNombre = new javax.swing.JLabel();
         botonSalir = new javax.swing.JButton();
@@ -46,23 +58,10 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
         TitleCodigo = new javax.swing.JLabel();
         jMateriasInscriptas = new javax.swing.JRadioButton();
         jMateriaNoInscriptas = new javax.swing.JRadioButton();
-        jListarAlumno = new javax.swing.JComboBox<>();
+        listarAlumno = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaListas = new javax.swing.JTable();
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable1);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setEnabled(false);
@@ -133,22 +132,15 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
             }
         });
 
-        jListarAlumno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jListarAlumno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jListarAlumnoActionPerformed(evt);
-            }
-        });
-
         tablaListas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Id", "Nombre", "Apellido"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
         jScrollPane3.setViewportView(tablaListas);
@@ -181,7 +173,7 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(TitleCodigo)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jListarAlumno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(listarAlumno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(jMateriasInscriptas)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -202,7 +194,7 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TitleCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jListarAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(listarAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addComponent(TitleNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -248,15 +240,15 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
 
     private void botonInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInscribirActionPerformed
        if(jMateriasInscriptas.isSelected()==false){    //Crear Alumno
-        Alumno alumnoInscribir = (Alumno) jListarAlumno.getSelectedItem();
+        Alumno alumnoInscribir = (Alumno) listarAlumno.getSelectedItem();
         if(alumnoInscribir == null ){return;}
         InscripcionData materias = new InscripcionData();
-        int selectedRow = jTable1.getSelectedRow();
-        int filaS=jTable1.getSelectedRow();
+        int selectedRow = tablaListas.getSelectedRow();
+        int filaS=tablaListas.getSelectedRow();
         
         if (filaS!=-1){
             //Crear Materia
-            int codigo = Integer.parseInt(jTable1.getValueAt(selectedRow, 2).toString());
+            int codigo = Integer.parseInt(tablaListas.getValueAt(selectedRow, 2).toString());
             MateriaData materiaData = new MateriaData();
             Materia materia = materiaData.buscarMateria(codigo);
             
@@ -282,16 +274,16 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
     private void botonAnularInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnularInscripcionActionPerformed
                                             
     if(jMateriasInscriptas.isSelected()==true){
-        Alumno x = (Alumno) jListarAlumno.getSelectedItem();
+        Alumno x = (Alumno) listarAlumno.getSelectedItem();
         if(x == null && jMateriaNoInscriptas.isSelected()==true){return;}
         
-        int selectedRow = jTable1.getSelectedRow();
-        int filaS=jTable1.getSelectedRow();
+        int selectedRow = tablaListas.getSelectedRow();
+        int filaS=tablaListas.getSelectedRow();
         
         if (filaS!=-1){
             //Fijar en que materia estamos
-            String materiaName = jTable1.getValueAt(selectedRow, 0).toString();
-            int codigo = Integer.parseInt(jTable1.getValueAt(selectedRow, 2).toString());
+            String materiaName = tablaListas.getValueAt(selectedRow, 0).toString();
+            int codigo = Integer.parseInt(tablaListas.getValueAt(selectedRow, 2).toString());
           
       
         int confirmResult = JOptionPane.showConfirmDialog(
@@ -320,14 +312,14 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonAnularInscripcionActionPerformed
 
     private void jMateriasInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMateriasInscriptasActionPerformed
-        Alumno selectedAlumno = (Alumno) jListarAlumno.getSelectedItem();
+        Alumno selectedAlumno = (Alumno) listarAlumno.getSelectedItem();
         
         InscripcionData materias = new InscripcionData();
         if(selectedAlumno==null){
             return;
         }
         modelo.setRowCount(0);
-        jTable1.removeAll();
+        tablaListas.removeAll();
         
           
          List<Materia> materiasCursadas = materias.obtenerMateriasCursadas(selectedAlumno.getIdAlumno());
@@ -335,14 +327,14 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jMateriasInscriptasActionPerformed
 
     private void jMateriaNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMateriaNoInscriptasActionPerformed
-     Alumno selectedAlumno = (Alumno) jListarAlumno.getSelectedItem();
+     Alumno selectedAlumno = (Alumno) listarAlumno.getSelectedItem();
         
         InscripcionData materias = new InscripcionData();
         if(selectedAlumno==null){
             return;
         }
         modelo.setRowCount(0);
-        jTable1.removeAll();
+        tablaListas.removeAll();
        
             List<Materia> materiasNOCursadas =  materias.obtenerMateriasNOCursadas(selectedAlumno.getIdAlumno());
             cargarDatos(materiasNOCursadas);
@@ -352,7 +344,7 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
 
     private void jListarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jListarAlumnoActionPerformed
 
-        Alumno selectedAlumno = (Alumno) jListarAlumno.getSelectedItem();
+        Alumno selectedAlumno = (Alumno) listarAlumno.getSelectedItem();
         if (selectedAlumno == null) {
             // podria agregar un mensaje de error 
             return;
@@ -377,7 +369,7 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
         modelo.addColumn("Materia");
         modelo.addColumn("Año");
         modelo.addColumn("Codigo");
-        jTable1.setModel(modelo);
+        tablaListas.setModel(modelo);
 
     }
 
@@ -396,15 +388,13 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
     private javax.swing.JButton botonAnularInscripcion;
     private javax.swing.JButton botonInscribir;
     private javax.swing.JButton botonSalir;
-    private javax.swing.JComboBox<String> jListarAlumno;
     private javax.swing.JRadioButton jMateriaNoInscriptas;
     private javax.swing.JRadioButton jMateriasInscriptas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JComboBox<Alumno> listarAlumno;
     private javax.swing.JTable tablaListas;
     // End of variables declaration//GEN-END:variables
 
