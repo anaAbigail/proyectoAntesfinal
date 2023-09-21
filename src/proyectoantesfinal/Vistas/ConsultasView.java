@@ -10,7 +10,6 @@ import javax.swing.table.DefaultTableModel;
 import proyectoantesfinal.AccesoADatos.InscripcionData;
 import proyectoantesfinal.AccesoADatos.MateriaData;
 import proyectoantesfinal.Entidades.Alumno;
-import proyectoantesfinal.Entidades.Inscripcion;
 import proyectoantesfinal.Entidades.Materia;
 
 /**@author Programita */
