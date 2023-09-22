@@ -4,7 +4,9 @@
  */
 package proyectoantesfinal.Vistas;
 
+import com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
@@ -174,45 +176,41 @@ public class ActualizacionNotasFormuView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-        Alumno alumnoSeleccionado = (Alumno) CBListaDeAlumnos.getSelectedItem();
-        
-        int idAlumnoSeleccionado = alumnoSeleccionado.getIdAlumno();
-         int filaS=tablaListas.getSelectedRow();
-         int selectedRow=tablaListas.getSelectedRow();
-         
-          
-             
-            int idMateria = Integer.parseInt(tablaListas.getValueAt(selectedRow,0).toString());           
-            // 
-            model.addTableModelListener(new TableModelListener() {
-            @Override
-            public void tableChanged(TableModelEvent e) {
-                if (e.getType() == TableModelEvent.UPDATE) {
-                int row = e.getFirstRow();
-                int col = e.getColumn();
-                
-                if (col == 2) { 
-                    double newNotaAlumno = Double.parseDouble(model.getValueAt(row, col).toString());
-                    
-                    notaAlumno = newNotaAlumno;
-                }
+         Alumno alumnoSeleccionado = (Alumno) CBListaDeAlumnos.getSelectedItem();
+    int idAlumnoSeleccionado = alumnoSeleccionado.getIdAlumno();
+    InscripcionData inscripcionData=new InscripcionData();
+    int selectedRow = tablaListas.getSelectedRow();              
+    double notaOriginal = Double.parseDouble(model.getValueAt(selectedRow, 2).toString());
+    if (selectedRow != -1) {
+        try {
+            double notaAlumno = Double.parseDouble(model.getValueAt(selectedRow, 2).toString());
+
+            if(notaAlumno==notaOriginal){
+                JOptionPane.showMessageDialog(null, "Porfavor ingrese una nueva nota, o confirme la nota con ENTER antes de continuar con el guardado");
+                armarCabecera();
+                List<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionesPorAlumno(idAlumnoSeleccionado);
+                cargarDatos(inscripciones);  
+                return;
             }
-            }
-        });
-            System.out.println(notaAlumno);
-                   
- 
-            InscripcionData inscripcionData=new InscripcionData();  
-            inscripcionData.actualizarNota(11, 8, 5.0);
             
-        
+        } catch (NumberFormatException e) {
+            
+        }
+    }
+        int idMateria = Integer.parseInt(model.getValueAt(selectedRow, 0).toString());      
+ 
+              
+            inscripcionData.actualizarNota(idAlumnoSeleccionado, idMateria, notaAlumno);
+            
             armarCabecera();
-            List<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionesPorAlumno(11);
+            List<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionesPorAlumno(idAlumnoSeleccionado);
             cargarDatos(inscripciones);    
          
          
     }//GEN-LAST:event_jBGuardarActionPerformed
 
+    
+    
     private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_BotonSalirActionPerformed
