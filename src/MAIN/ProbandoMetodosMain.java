@@ -117,21 +117,27 @@ public class ProbandoMetodosMain {
                               //metodo guardarInscripcion
         //Alumno yadhira = new Alumno(33,94327475, "Rebaza", " Yadhira ", LocalDate.of(2003, 03,01), true);
         //probar.guardarAlumno( yadhira);               
-        //Materia materia = new Materia(4,"Matematica", 2006, true);
+        //Materia materia = new Materia(6,"Matematica", 2006, true);
         //Inscripcion inscripcion = new Inscripcion(yadhira, materia, 10);                  
         //inscripcionData.guardarInscripcion(inscripcion);
         
+        
                            //metodo obtenerInscripciones
-         
-        //List<Inscripcion>listaDeInscripciones=inscripcionData.obtenerInscripciones();
+         //List<Inscripcion>listaDeInscripciones=inscripcionData.obtenerInscripciones();
         //System.out.println("lista: "+listaDeInscripciones);
                          
+        
                            //metodo obtenerInscripcionesPorAlumno
         //List<Inscripcion>listaInscripcionPorAlumno=inscripcionData.obtenerInscripcionesPorAlumno(33);
         //System.out.println("lista: "+listaInscripcionPorAlumno);
         
-                          //metodo obtenerMateriaCursadas
+        
+                          //metodo actualizar nota                           //utilizo los datos del alumno incripto
+        //inscripcionData.actualizarNota(33, 4, 9);                          //en las lineas 118 y 120.
                          
+        
+                            //metodo borrar inscripcion
+        //inscripcionData.borrarInscripcionMateriaAlumno(33, 4);
                           
     }  
     

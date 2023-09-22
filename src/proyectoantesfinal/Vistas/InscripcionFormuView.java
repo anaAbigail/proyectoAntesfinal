@@ -323,7 +323,9 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
         
           
          List<Materia> materiasCursadas = materias.obtenerMateriasCursadas(selectedAlumno.getIdAlumno());
-         cargarDatos(materiasCursadas); // TODO add your handling code here:
+         cargarDatos(materiasCursadas);
+         
+         
     }//GEN-LAST:event_jMateriasInscriptasActionPerformed
 
     private void jMateriaNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMateriaNoInscriptasActionPerformed

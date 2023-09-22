@@ -2,15 +2,35 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-
 package proyectoantesfinal.Vistas;
 
-/**@author Programita */
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import proyectoantesfinal.AccesoADatos.AlumnoData;
+import proyectoantesfinal.AccesoADatos.InscripcionData;
+import proyectoantesfinal.Entidades.Alumno;
+import proyectoantesfinal.Entidades.Inscripcion;
+import proyectoantesfinal.Entidades.Materia;
 
+/**
+ * @author Programita
+ */
 public class ActualizacionNotasFormuView extends javax.swing.JInternalFrame {
+
+    private DefaultTableModel model = new DefaultTableModel();
 
     public ActualizacionNotasFormuView() {
         initComponents();
+        armarCabecera();
+        AlumnoData alumnoData = new AlumnoData();
+        List<Alumno> listaDeAlumnos = alumnoData.listarAlumnos();
+
+        CBListaDeAlumnos.removeAllItems();
+
+        listaDeAlumnos.forEach((alumno) -> {
+            CBListaDeAlumnos.addItem(alumno);
+        });
+
     }
 
     @SuppressWarnings("unchecked")
@@ -23,10 +43,10 @@ public class ActualizacionNotasFormuView extends javax.swing.JInternalFrame {
         TitleGestionMateria = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         TitleCodigo = new javax.swing.JLabel();
-        Listarnotas = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaLista = new javax.swing.JTable();
+        CBListaDeAlumnos = new javax.swing.JComboBox<>();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -59,16 +79,9 @@ public class ActualizacionNotasFormuView extends javax.swing.JInternalFrame {
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
 
         TitleCodigo.setBackground(new java.awt.Color(255, 255, 255));
-        TitleCodigo.setFont(new java.awt.Font("Cambria Math", 0, 18)); // NOI18N
+        TitleCodigo.setFont(new java.awt.Font("Cambria Math", 1, 18)); // NOI18N
         TitleCodigo.setForeground(new java.awt.Color(0, 0, 0));
         TitleCodigo.setText("Seleccione un alumno");
-
-        Listarnotas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        Listarnotas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ListarnotasActionPerformed(evt);
-            }
-        });
 
         tablaLista.setBackground(new java.awt.Color(255, 255, 255));
         tablaLista.setForeground(new java.awt.Color(0, 0, 0));
@@ -87,6 +100,17 @@ public class ActualizacionNotasFormuView extends javax.swing.JInternalFrame {
 
         jScrollPane1.setViewportView(jScrollPane3);
 
+        CBListaDeAlumnos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CBListaDeAlumnosItemStateChanged(evt);
+            }
+        });
+        CBListaDeAlumnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBListaDeAlumnosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -102,12 +126,11 @@ public class ActualizacionNotasFormuView extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(TitleCodigo)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(Listarnotas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(TitleCodigo)
+                                .addGap(46, 46, 46)
+                                .addComponent(CBListaDeAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(193, 193, 193)
@@ -123,7 +146,7 @@ public class ActualizacionNotasFormuView extends javax.swing.JInternalFrame {
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TitleCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Listarnotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBListaDeAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(70, 70, 70)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                 .addGap(32, 32, 32)
@@ -148,21 +171,48 @@ public class ActualizacionNotasFormuView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        
+
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
-     this.dispose();
+        this.dispose();
     }//GEN-LAST:event_BotonSalirActionPerformed
 
-    private void ListarnotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarnotasActionPerformed
-        
-    }//GEN-LAST:event_ListarnotasActionPerformed
+    private void CBListaDeAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBListaDeAlumnosActionPerformed
+
+        Alumno alumnoSeleccionado = (Alumno) CBListaDeAlumnos.getSelectedItem();
+        int idAlumnoSeleccionado = alumnoSeleccionado.getIdAlumno();
+
+        InscripcionData inscripcionData = new InscripcionData();
+
+        List<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionesPorAlumno(idAlumnoSeleccionado);
+        cargarDatos(inscripciones);
+    }//GEN-LAST:event_CBListaDeAlumnosActionPerformed
+    private void armarCabecera() {
+
+        model.addColumn("Codigo");
+        model.addColumn("Nombre");
+        model.addColumn("Nota");
+        tablaLista.setModel(model);
+
+    }
+
+    public void cargarDatos(List<Inscripcion> inscripciones) {
+        model.setRowCount(0);
+
+        for (Inscripcion inscripcion : inscripciones) {
+
+            model.addRow(new Object[]{inscripcion.getIdInscripcion(), inscripcion.getMateria().getNombre(), inscripcion.getNota()});
+        }
+    }
+    private void CBListaDeAlumnosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBListaDeAlumnosItemStateChanged
+
+    }//GEN-LAST:event_CBListaDeAlumnosItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonSalir;
-    private javax.swing.JComboBox<String> Listarnotas;
+    private javax.swing.JComboBox<Alumno> CBListaDeAlumnos;
     private javax.swing.JLabel TitleCodigo;
     private javax.swing.JLabel TitleGestionMateria;
     private javax.swing.JButton botonGuardar;

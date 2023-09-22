@@ -163,12 +163,12 @@ public class AlumnoData {
 
     }
 
-    public void eliminarAlumno(int dni) {
+    public void eliminarAlumno(int id) {
 
         try {
             String sql = "UPDATE alumno SET estado = 0 WHERE idAlumno = ? ";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, dni);
+            ps.setInt(1, id);
             int fila = ps.executeUpdate();
 
             if (fila == 1) {
