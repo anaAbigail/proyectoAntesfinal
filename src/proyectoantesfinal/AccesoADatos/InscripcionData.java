@@ -155,7 +155,7 @@ public class InscripcionData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al eliminar la inscripción: " + ex.getMessage());
         }
-    
+        
 }
 
 public void actualizarNota(int idAlumno, int idMateria, double nota) {
