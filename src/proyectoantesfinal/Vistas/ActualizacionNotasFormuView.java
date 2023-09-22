@@ -4,26 +4,22 @@
  */
 package proyectoantesfinal.Vistas;
 
-import com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets;
+
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import proyectoantesfinal.AccesoADatos.AlumnoData;
 import proyectoantesfinal.AccesoADatos.InscripcionData;
-import proyectoantesfinal.AccesoADatos.MateriaData;
 import proyectoantesfinal.Entidades.Alumno;
 import proyectoantesfinal.Entidades.Inscripcion;
-import proyectoantesfinal.Entidades.Materia;
+
 
 /**
  * @author Programita
  */
 public class ActualizacionNotasFormuView extends javax.swing.JInternalFrame {
-    private double notaAlumno;
     private DefaultTableModel model = new DefaultTableModel();
-    
+    private double notaAlumno;
 
     public ActualizacionNotasFormuView() {
         initComponents();
@@ -176,37 +172,30 @@ public class ActualizacionNotasFormuView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-         Alumno alumnoSeleccionado = (Alumno) CBListaDeAlumnos.getSelectedItem();
-    int idAlumnoSeleccionado = alumnoSeleccionado.getIdAlumno();
-    InscripcionData inscripcionData=new InscripcionData();
-    int selectedRow = tablaListas.getSelectedRow();              
-    double notaOriginal = Double.parseDouble(model.getValueAt(selectedRow, 2).toString());
+        Alumno alumnoSeleccionado = (Alumno) CBListaDeAlumnos.getSelectedItem();
+        int idAlumnoSeleccionado = alumnoSeleccionado.getIdAlumno();
+        InscripcionData inscripcionData=new InscripcionData();
+        int selectedRow = tablaListas.getSelectedRow();
+    
     if (selectedRow != -1) {
         try {
-            double notaAlumno = Double.parseDouble(model.getValueAt(selectedRow, 2).toString());
-
-            if(notaAlumno==notaOriginal){
-                JOptionPane.showMessageDialog(null, "Porfavor ingrese una nueva nota, o confirme la nota con ENTER antes de continuar con el guardado");
-                armarCabecera();
-                List<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionesPorAlumno(idAlumnoSeleccionado);
-                cargarDatos(inscripciones);  
-                return;
-            }
             
-        } catch (NumberFormatException e) {
-            
-        }
-    }
-        int idMateria = Integer.parseInt(model.getValueAt(selectedRow, 0).toString());      
- 
+            double newNotaAlumno = Double.parseDouble(model.getValueAt(selectedRow, 2).toString());
+            notaAlumno=newNotaAlumno;
+            int idMateria = Integer.parseInt(model.getValueAt(selectedRow, 0).toString());      
               
             inscripcionData.actualizarNota(idAlumnoSeleccionado, idMateria, notaAlumno);
             
+        } catch (NumberFormatException e) {
+           JOptionPane.showMessageDialog(null, "Porfavor ingrese una nota correctamente.");
+           
+        }finally{
             armarCabecera();
             List<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionesPorAlumno(idAlumnoSeleccionado);
-            cargarDatos(inscripciones);    
-         
-         
+            cargarDatos(inscripciones);   
+        }
+    }
+        
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     
@@ -225,13 +214,13 @@ public class ActualizacionNotasFormuView extends javax.swing.JInternalFrame {
         List<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionesPorAlumno(idAlumnoSeleccionado);
         cargarDatos(inscripciones);
     }//GEN-LAST:event_CBListaDeAlumnosActionPerformed
+    
     private void armarCabecera() {
         model.setColumnCount(0);
         model.addColumn("Codigo");
         model.addColumn("Nombre");
         model.addColumn("Nota");
         tablaListas.setModel(model);
-
     }
 
     public void cargarDatos(List<Inscripcion> inscripciones) {
