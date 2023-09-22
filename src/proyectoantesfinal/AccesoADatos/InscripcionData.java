@@ -47,7 +47,7 @@ public class InscripcionData {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                int nota = rs.getInt("nota");
+                Double nota = rs.getDouble("nota");
                 int idAlumno = rs.getInt("idAlumno");
                 int idMateria = rs.getInt("idMateria");
                 Alumno alumno = aluData.buscarAlumno(idAlumno);
@@ -70,7 +70,7 @@ public class InscripcionData {
             ps.setInt(1, idAlumno);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                int nota = rs.getInt("nota");
+                Double nota = rs.getDouble("nota");
                 int idMateria = rs.getInt("idMateria");
                 Alumno alumno = aluData.buscarAlumno(idAlumno);
                 Materia materia = matData.buscarMateria(idMateria);//buscar materia un mtodo de materiaData
@@ -92,11 +92,14 @@ public class InscripcionData {
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAlumno);
+            
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int idMateria = rs.getInt("idMateria");
+                
                 Materia materia = matData.buscarMateria(idMateria);
                 materias.add(materia);
+                
             }
             ps.close();
         } catch (SQLException ex) {
@@ -158,7 +161,7 @@ public class InscripcionData {
         
 }
 
-public void actualizarNota(int idAlumno, int idMateria, double nota) {
+public void actualizarNota(int idAlumno,int idMateria, Double nota) {
         String sql = "UPDATE inscripcion SET nota = ? WHERE idAlumno = ? AND idMateria = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);

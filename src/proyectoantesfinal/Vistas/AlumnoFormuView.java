@@ -291,7 +291,7 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
         AlumnoData eliminar = new AlumnoData();
-        jbotonEstado.setSelected(false);
+         jbotonEstado.setSelected(false);
         eliminar.eliminarAlumno(Integer.parseInt(JTdocumentoAlumno.getText()));
        
         

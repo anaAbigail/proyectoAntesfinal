@@ -5,9 +5,12 @@
 package proyectoantesfinal.Vistas;
 
 import java.util.List;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import proyectoantesfinal.AccesoADatos.AlumnoData;
 import proyectoantesfinal.AccesoADatos.InscripcionData;
+import proyectoantesfinal.AccesoADatos.MateriaData;
 import proyectoantesfinal.Entidades.Alumno;
 import proyectoantesfinal.Entidades.Inscripcion;
 import proyectoantesfinal.Entidades.Materia;
@@ -16,21 +19,14 @@ import proyectoantesfinal.Entidades.Materia;
  * @author Programita
  */
 public class ActualizacionNotasFormuView extends javax.swing.JInternalFrame {
-
+    private double notaAlumno;
     private DefaultTableModel model = new DefaultTableModel();
+    
 
     public ActualizacionNotasFormuView() {
         initComponents();
         armarCabecera();
-        AlumnoData alumnoData = new AlumnoData();
-        List<Alumno> listaDeAlumnos = alumnoData.listarAlumnos();
-
-        CBListaDeAlumnos.removeAllItems();
-
-        listaDeAlumnos.forEach((alumno) -> {
-            CBListaDeAlumnos.addItem(alumno);
-        });
-
+        armarCbox();
     }
 
     @SuppressWarnings("unchecked")
@@ -96,6 +92,13 @@ public class ActualizacionNotasFormuView extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaListas.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                tablaListasInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
         jScrollPane3.setViewportView(tablaListas);
 
         jScrollPane1.setViewportView(jScrollPane3);
@@ -172,16 +175,40 @@ public class ActualizacionNotasFormuView extends javax.swing.JInternalFrame {
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         Alumno alumnoSeleccionado = (Alumno) CBListaDeAlumnos.getSelectedItem();
+        
         int idAlumnoSeleccionado = alumnoSeleccionado.getIdAlumno();
          int filaS=tablaListas.getSelectedRow();
          int selectedRow=tablaListas.getSelectedRow();
-         if(filaS!=-1){
-            int idMateria = Integer.parseInt(tablaListas.getValueAt(selectedRow,0).toString());
-            double notaAlumno= Double.parseDouble(tablaListas.getValueAt(selectedRow,2).toString());       
-            InscripcionData inscripcionData=new InscripcionData();  
-            inscripcionData.actualizarNota(idAlumnoSeleccionado, idMateria, notaAlumno);
-        }
          
+          
+             
+            int idMateria = Integer.parseInt(tablaListas.getValueAt(selectedRow,0).toString());           
+            // 
+            model.addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                if (e.getType() == TableModelEvent.UPDATE) {
+                int row = e.getFirstRow();
+                int col = e.getColumn();
+                
+                if (col == 2) { 
+                    double newNotaAlumno = Double.parseDouble(model.getValueAt(row, col).toString());
+                    
+                    notaAlumno = newNotaAlumno;
+                }
+            }
+            }
+        });
+            System.out.println(notaAlumno);
+                   
+ 
+            InscripcionData inscripcionData=new InscripcionData();  
+            inscripcionData.actualizarNota(11, 8, 5.0);
+            
+        
+            armarCabecera();
+            List<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionesPorAlumno(11);
+            cargarDatos(inscripciones);    
          
          
     }//GEN-LAST:event_jBGuardarActionPerformed
@@ -201,7 +228,7 @@ public class ActualizacionNotasFormuView extends javax.swing.JInternalFrame {
         cargarDatos(inscripciones);
     }//GEN-LAST:event_CBListaDeAlumnosActionPerformed
     private void armarCabecera() {
-
+        model.setColumnCount(0);
         model.addColumn("Codigo");
         model.addColumn("Nombre");
         model.addColumn("Nota");
@@ -217,9 +244,26 @@ public class ActualizacionNotasFormuView extends javax.swing.JInternalFrame {
             model.addRow(new Object[]{inscripcion.getMateria().getIdMateria(), inscripcion.getMateria().getNombre(), inscripcion.getNota()});
         }
     }
+
+
+    public void armarCbox(){
+         AlumnoData alumnoData = new AlumnoData();
+        List<Alumno> listaDeAlumnos = alumnoData.listarAlumnos();
+
+        CBListaDeAlumnos.removeAllItems();
+
+        listaDeAlumnos.forEach((alumno) -> {
+            CBListaDeAlumnos.addItem(alumno);
+        });
+
+    }
     private void CBListaDeAlumnosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBListaDeAlumnosItemStateChanged
 
     }//GEN-LAST:event_CBListaDeAlumnosItemStateChanged
+
+    private void tablaListasInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_tablaListasInputMethodTextChanged
+        
+    }//GEN-LAST:event_tablaListasInputMethodTextChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
