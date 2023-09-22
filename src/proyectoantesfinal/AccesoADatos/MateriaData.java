@@ -38,7 +38,7 @@ public class MateriaData {
     public Materia buscarMateria(int id){
         
             Materia materia=null;
-            String sql= "select idMateria, nombre, anioMateria, estado from materia where idMateria = ? and estado =1 ";
+            String sql= "SELECT idMateria, nombre, anioMateria, estado FROM materia WHERE idMateria = ? ";
             try {    
                 PreparedStatement ps = con.prepareStatement(sql);
                 ps.setInt(1, id);

@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import proyectoantesfinal.AccesoADatos.AlumnoData;
 import proyectoantesfinal.Entidades.Alumno;
 import java.time.ZoneId;
+import javax.swing.JOptionPane;
 
 
 public class AlumnoFormuView extends javax.swing.JInternalFrame {
@@ -114,27 +115,12 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
         JTdocumentoAlumno.setBackground(new java.awt.Color(228, 228, 228));
 
         JTnombreAlumno.setBackground(new java.awt.Color(228, 228, 228));
-        JTnombreAlumno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JTnombreAlumnoActionPerformed(evt);
-            }
-        });
 
         JTapellidoAlumno.setBackground(new java.awt.Color(228, 228, 228));
-        JTapellidoAlumno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JTapellidoAlumnoActionPerformed(evt);
-            }
-        });
 
         jbotonEstado.setBackground(new java.awt.Color(255, 255, 255));
         jbotonEstado.setForeground(new java.awt.Color(255, 255, 255));
         jbotonEstado.setText("Fn");
-        jbotonEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbotonEstadoActionPerformed(evt);
-            }
-        });
 
         BotonBuscar.setBackground(new java.awt.Color(204, 204, 255));
         BotonBuscar.setForeground(new java.awt.Color(0, 0, 0));
@@ -253,8 +239,8 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
      String apellido = JTapellidoAlumno.getText();
      String nombre = JTnombreAlumno.getText();
      boolean estado = jbotonEstado.isSelected();
-   java.util.Date utilDate= jdFechaNacimiento.getDate();
-   java.sql.Date sqlDate= new java.sql.Date(utilDate.getTime());
+     java.util.Date utilDate= jdFechaNacimiento.getDate();
+     java.sql.Date sqlDate= new java.sql.Date(utilDate.getTime());
      LocalDate fechaNac = sqlDate.toLocalDate();
      
         Alumno alumnito = new Alumno(dni,apellido, nombre,fechaNac, estado);
@@ -265,16 +251,7 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
       this.dispose();  
     }//GEN-LAST:event_jbSalirActionPerformed
-
-    private void jbotonEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbotonEstadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbotonEstadoActionPerformed
-
-    private void JTnombreAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTnombreAlumnoActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_JTnombreAlumnoActionPerformed
-
+/*
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
@@ -282,17 +259,19 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
     private void jCalendarioAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jCalendarioAncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_jCalendarioAncestorAdded
-
+*/
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         AlumnoData alumnoData = new AlumnoData();
-        Alumno alumno=new Alumno(Integer.parseInt(JTdocumentoAlumno.getText()), JTapellidoAlumno.getText(),JTnombreAlumno.getText(),jdFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),true);
-        alumnoData.guardarAlumno(alumno);
+        
+        LocalDate fechaNac = jdFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        String nombre = JTnombreAlumno.getText();
+        String apellido = JTapellidoAlumno.getText();
+        int dni = Integer.parseInt(JTdocumentoAlumno.getText());
+        boolean estado = jbotonEstado.isSelected();
+        Alumno alumno=new Alumno(dni,apellido ,nombre,fechaNac,estado);
+        alumnoData.modificarAlumno(alumno);
         
     }//GEN-LAST:event_jbGuardarActionPerformed
-
-    private void JTapellidoAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTapellidoAlumnoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JTapellidoAlumnoActionPerformed
 
     private void BotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarActionPerformed
         AlumnoData boton = new AlumnoData();
@@ -305,13 +284,16 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
             jbotonEstado.setSelected(alumnito.isEstado());
             jdFechaNacimiento.setDate(Date.valueOf(alumnito.getFechaNacimiento()));
             
+        } else{
+           JOptionPane.showMessageDialog(null, "El alumno no fue encontrado, compruebe el DNI entrado."); 
         }
     }//GEN-LAST:event_BotonBuscarActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
         AlumnoData eliminar = new AlumnoData();
+        jbotonEstado.setSelected(false);
         eliminar.eliminarAlumno(Integer.parseInt(JTdocumentoAlumno.getText()));
-        JTdocumentoAlumno.setText ("");
+       
         
         
     }//GEN-LAST:event_jbEliminarActionPerformed

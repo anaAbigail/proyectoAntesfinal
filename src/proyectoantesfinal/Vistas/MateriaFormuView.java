@@ -245,7 +245,14 @@ public class MateriaFormuView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_TextForAnioActionPerformed
 
     private void ButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonGuardarActionPerformed
-        
+       MateriaData materiaData = new MateriaData(); 
+       String nombre = TextForNombre.getText();
+       int anio = Integer.parseInt(TextForAnio.getText());
+       boolean estado = RadioButtonEstado.isSelected();
+       int idMateria = Integer.parseInt(TextForCodigo.getText());
+       Materia materia = new Materia(idMateria,nombre, anio, estado);
+       materiaData.modificarMateria(materia);
+       
     }//GEN-LAST:event_ButtonGuardarActionPerformed
 
     private void RadioButtonEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioButtonEstadoActionPerformed
@@ -255,7 +262,7 @@ public class MateriaFormuView extends javax.swing.JInternalFrame {
     private void ButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEliminarActionPerformed
         MateriaData materiaData = new MateriaData();
         materiaData.eliminarMateria(Integer.parseInt(TextForCodigo.getText()));
-        TextForCodigo.setText("");
+        RadioButtonEstado.setSelected(false);
         
     }//GEN-LAST:event_ButtonEliminarActionPerformed
 
