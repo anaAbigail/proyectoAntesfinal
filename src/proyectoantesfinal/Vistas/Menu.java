@@ -30,6 +30,7 @@ public class Menu extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jFormularioAlumno = new javax.swing.JMenuItem();
@@ -49,31 +50,35 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Cambria Math", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 51, 255));
+        jLabel1.setFont(new java.awt.Font("Cambria Math", 0, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Acerca de la ULP");
 
         jTextArea1.setEditable(false);
         jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
         jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jTextArea1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jTextArea1.setForeground(new java.awt.Color(0, 0, 0));
         jTextArea1.setRows(5);
-        jTextArea1.setText("En el año 2004 se crea por ley II-0034, la Universidad de La Punta (ULP) con el\n propósito de formar profesionales en áreas estratégicas asociadas al crecimiento \ny progreso de la provincia.\nEl campus universitario se encuentra ubicado en la ciudad de La Punta, a\n 20 kilómetros de San Luis. Su estructura edilicia fue diseñada por el reconocido\n arquitecto argentino Clorindo Testa, en un territorio de 51 hectáreas, 4373,00 m2.");
+        jTextArea1.setText(" En el año 2004 se crea por ley II-0034, la Universidad de La Punta (ULP) con el propósito\n de formar profesionales en áreas estratégicas asociadas al crecimiento  y progreso\n de la provincia.\n\n El campus universitario se encuentra ubicado en la ciudad de La Punta, a 20 kilómetros \nde San Luis. Su estructura edilicia fue diseñada por el reconocido arquitecto argentino \nClorindo Testa, en un territorio de 51 hectáreas, 4373,00 m2.");
         jTextArea1.setEditable(false);
         jScrollPane1.setViewportView(jTextArea1);
 
-        jTextArea2.setEditable(false);
-        jTextArea2.setBackground(new java.awt.Color(204, 204, 255));
+        jTextArea2.setBackground(new java.awt.Color(255, 255, 255));
         jTextArea2.setColumns(20);
-        jTextArea2.setFont(new java.awt.Font("Leelawadee UI Semilight", 2, 12)); // NOI18N
+        jTextArea2.setFont(new java.awt.Font("Segoe UI Semibold", 2, 14)); // NOI18N
         jTextArea2.setForeground(new java.awt.Color(0, 0, 0));
-        jTextArea2.setRows(5);
-        jTextArea2.setText("      “El campus de la Universidad de La Punta\n    es por su propuesta general, único en el país.\"\n\n                             Clorindo Testa");
+        jTextArea2.setRows(2);
+        jTextArea2.setTabSize(3);
+        jTextArea2.setText("“El campus de la Universidad de La Punta es por su propuesta general, único en el país.\"\n\n                                                  ~  Clorindo Testa ~");
+        jTextArea2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(215, 215, 215), new java.awt.Color(153, 204, 255), null));
         jTextArea2.setEditable(false);
         jScrollPane3.setViewportView(jTextArea2);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoantesfinal/Vistas/Imagenes/ulpLogo.png"))); // NOI18N
+
+        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 102));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -82,32 +87,38 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(55, 55, 55)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(82, 82, 82)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(101, 101, 101)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(113, 113, 113)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(193, 193, 193)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(95, Short.MAX_VALUE))
+                                .addGap(29, 29, 29)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(68, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(190, 190, 190))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2))
-                .addGap(0, 191, Short.MAX_VALUE))
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
 
         escritorio.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -132,7 +143,10 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.setName("");
 
+        jMenu1.setBackground(new java.awt.Color(255, 255, 255));
+        jMenu1.setForeground(new java.awt.Color(0, 0, 0));
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoantesfinal/vistas/Imagenes/alumno1.png"))); // NOI18N
+        jMenu1.setText("Alumno");
 
         jFormularioAlumno.setText("Formulario de Alumno");
         jFormularioAlumno.addActionListener(new java.awt.event.ActionListener() {
@@ -145,6 +159,7 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoantesfinal/vistas/Imagenes/materia2.png"))); // NOI18N
+        jMenu2.setText("Materia");
         jMenu2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu2ActionPerformed(evt);
@@ -161,7 +176,10 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu3.setBackground(new java.awt.Color(255, 255, 255));
+        jMenu3.setForeground(new java.awt.Color(0, 0, 0));
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoantesfinal/vistas/Imagenes/administracion1.png"))); // NOI18N
+        jMenu3.setText("Administracion");
         jMenu3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu3ActionPerformed(evt);
@@ -187,6 +205,7 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jMenu3);
 
         AlumnosXMateria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoantesfinal/vistas/Imagenes/consultas.png"))); // NOI18N
+        AlumnosXMateria.setText("Consultas");
 
         jMenuItem4.setText("Alumnos por Materia");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -344,6 +363,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     // End of variables declaration//GEN-END:variables
