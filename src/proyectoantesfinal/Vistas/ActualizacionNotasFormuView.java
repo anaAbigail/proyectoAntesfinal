@@ -189,7 +189,7 @@ public class ActualizacionNotasFormuView extends javax.swing.JInternalFrame {
         } catch (NumberFormatException e) {
            JOptionPane.showMessageDialog(null, "Porfavor ingrese una nota correctamente.");
            
-        }finally{
+        }finally{ 
             armarCabecera();
             List<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionesPorAlumno(idAlumnoSeleccionado);
             cargarDatos(inscripciones);   

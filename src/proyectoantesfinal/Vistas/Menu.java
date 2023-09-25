@@ -105,7 +105,7 @@ public class Menu extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2))
-                .addGap(0, 181, Short.MAX_VALUE))
+                .addGap(0, 133, Short.MAX_VALUE))
         );
 
         escritorio.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -130,7 +130,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.setName("");
 
-        jMenu1.setText("Alumno");
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/alumno.png"))); // NOI18N
 
         jFormularioAlumno.setText("Formulario de Alumno");
         jFormularioAlumno.addActionListener(new java.awt.event.ActionListener() {
