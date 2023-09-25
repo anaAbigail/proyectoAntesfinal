@@ -40,7 +40,6 @@ public class AlumnoData {
 //                 System.out.println(rs.getInt());
                 alumno.setIdAlumno(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Alumno añadido con exito.");
-
             }
             ps.close();
 

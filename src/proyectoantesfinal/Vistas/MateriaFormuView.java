@@ -4,6 +4,8 @@
  */
 package proyectoantesfinal.Vistas;
 
+
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import proyectoantesfinal.AccesoADatos.MateriaData;
 import proyectoantesfinal.Entidades.Materia;
@@ -233,11 +235,13 @@ public class MateriaFormuView extends javax.swing.JInternalFrame {
 
     private void ButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonNuevoActionPerformed
         MateriaData materiaNueva = new MateriaData();
+        
         Materia materia = new Materia(TextForNombre.getText(), Integer.parseInt(TextForAnio.getText()), RadioButtonEstado.isSelected());
         materiaNueva.guardarMateria(materia);
         TextForNombre.setText("");
         TextForAnio.setText("");
         RadioButtonEstado.setSelected(false);
+        
     }//GEN-LAST:event_ButtonNuevoActionPerformed
 
     private void TextForAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextForAnioActionPerformed
@@ -247,11 +251,15 @@ public class MateriaFormuView extends javax.swing.JInternalFrame {
     private void ButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonGuardarActionPerformed
        MateriaData materiaData = new MateriaData(); 
        String nombre = TextForNombre.getText();
-       int anio = Integer.parseInt(TextForAnio.getText());
-       boolean estado = RadioButtonEstado.isSelected();
-       int idMateria = Integer.parseInt(TextForCodigo.getText());
-       Materia materia = new Materia(idMateria,nombre, anio, estado);
-       materiaData.modificarMateria(materia);
+       try{
+        int anio = Integer.parseInt(TextForAnio.getText());
+        boolean estado = RadioButtonEstado.isSelected();
+        int idMateria = Integer.parseInt(TextForCodigo.getText());
+        Materia materia = new Materia(idMateria,nombre, anio, estado);
+        materiaData.modificarMateria(materia);
+       }catch(NumberFormatException ex){
+           JOptionPane.showMessageDialog(this, "Porfavor ingrese un año correcto.");
+       }
        
     }//GEN-LAST:event_ButtonGuardarActionPerformed
 
@@ -261,22 +269,35 @@ public class MateriaFormuView extends javax.swing.JInternalFrame {
 
     private void ButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEliminarActionPerformed
         MateriaData materiaData = new MateriaData();
-        materiaData.eliminarMateria(Integer.parseInt(TextForCodigo.getText()));
-        RadioButtonEstado.setSelected(false);
-        
+        if(RadioButtonEstado.isSelected()==true){
+            try{
+                materiaData.eliminarMateria(Integer.parseInt(TextForCodigo.getText()));
+                RadioButtonEstado.setSelected(false);
+            }catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(this,"Esta Materia no existe.");
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Esta materia ya esta deshabilitada.");
+                
+        }
     }//GEN-LAST:event_ButtonEliminarActionPerformed
 
     private void BotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarActionPerformed
         MateriaData materiaNueva = new MateriaData();
-        int cod = Integer.parseInt(TextForCodigo.getText());
-        Materia materia = materiaNueva.buscarMateria(cod);
-        if (materia!=null) {
-            TextForNombre.setText(materia.getNombre());
-            TextForAnio.setText(Integer.toString(materia.getAnioMateria()));
-            RadioButtonEstado.setSelected(materia.isEstado());
-        }else{
-            JOptionPane.showMessageDialog(null, "La materia no existe");
+        try{
+            int cod = Integer.parseInt(TextForCodigo.getText());
+            Materia materia = materiaNueva.buscarMateria(cod);
+            if (materia!=null) {
+                TextForNombre.setText(materia.getNombre());
+                TextForAnio.setText(Integer.toString(materia.getAnioMateria()));
+                RadioButtonEstado.setSelected(materia.isEstado());
+            }else{
+                JOptionPane.showMessageDialog(null, "La materia no existe");}
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(this, "El codigo debe ser un numero, porfavor ingrese correctamente.");
         }
+           
+        
     }//GEN-LAST:event_BotonBuscarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
