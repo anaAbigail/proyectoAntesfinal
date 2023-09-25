@@ -13,36 +13,35 @@ import proyectoantesfinal.AccesoADatos.InscripcionData;
 import proyectoantesfinal.Entidades.Materia;
 import proyectoantesfinal.AccesoADatos.MateriaData;
 import proyectoantesfinal.Entidades.Inscripcion;
+
 /**
  * @author Programita
  */
 public class InscripcionFormuView extends javax.swing.JInternalFrame {
+private DefaultTableModel modelo = new DefaultTableModel();
 
-    private DefaultTableModel modelo = new DefaultTableModel();
-
+       //prepara alumnos para ser pasados y se ve la wea de la vista JAJA
     public InscripcionFormuView() {
         initComponents();
         armarcabezera();
+     
+        
+        
         jMateriaNoInscriptas.setSelected(true);
-        listarAlumno.setSelectedItem(1);
-        
-        
-          AlumnoData alumnosData = new AlumnoData();
-        List<Alumno> alumnos= alumnosData.listarAlumnos();
+        jComboListarAlumno.setSelectedItem(1);
 
-        listarAlumno.removeAllItems();
-        
-        alumnos.forEach((alumno) -> {
-            listarAlumno.addItem(alumno);
+        Alumno SeleccionarAlumno = (Alumno) jComboListarAlumno.getSelectedItem();
+        AlumnoData Alumnito = new AlumnoData();
+        List<Alumno> alumnitos = Alumnito.listarAlumnos();
+
+        jComboListarAlumno.removeAllItems();
+        alumnitos.forEach((alumnoo) -> {
+            jComboListarAlumno.addItem(alumnoo);
         });
-    }
-   private void refreshTable(List<Materia> materias) {
-        modelo.setRowCount(0);
 
-        for (Materia materia : materias) {
-            modelo.addRow(new Object[]{materia.getNombre(), materia.getAnioMateria(), materia.getIdMateria()});
-        }
     }
+
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -58,7 +57,7 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
         TitleCodigo = new javax.swing.JLabel();
         jMateriasInscriptas = new javax.swing.JRadioButton();
         jMateriaNoInscriptas = new javax.swing.JRadioButton();
-        listarAlumno = new javax.swing.JComboBox<>();
+        jComboListarAlumno = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaListas = new javax.swing.JTable();
@@ -132,6 +131,12 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
             }
         });
 
+        jComboListarAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboListarAlumnoActionPerformed(evt);
+            }
+        });
+
         tablaListas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -173,7 +178,7 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(TitleCodigo)
                                     .addGap(18, 18, 18)
-                                    .addComponent(listarAlumno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jComboListarAlumno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(jMateriasInscriptas)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -194,7 +199,7 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TitleCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(listarAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboListarAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addComponent(TitleNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -235,118 +240,125 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-    this.dispose();      
+        this.dispose();
     }//GEN-LAST:event_botonSalirActionPerformed
+    
+    private void refreshTable(List<Materia> materias) {
+        modelo.setRowCount(0);
 
+        for (Materia materia : materias) {
+            modelo.addRow(new Object[]{materia.getNombre(), materia.getAnioMateria(), materia.getIdMateria()});
+        }
+    }
+    
     private void botonInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInscribirActionPerformed
-       if(jMateriasInscriptas.isSelected()==false){    //Crear Alumno
-        Alumno alumnoInscribir = (Alumno) listarAlumno.getSelectedItem();
-        if(alumnoInscribir == null ){return;}
-        InscripcionData materias = new InscripcionData();
-        int selectedRow = tablaListas.getSelectedRow();
-        int filaS=tablaListas.getSelectedRow();
-        
-        if (filaS!=-1){
-            //Crear Materia
-            int codigo = Integer.parseInt(tablaListas.getValueAt(selectedRow, 2).toString());
-            MateriaData materiaData = new MateriaData();
-            Materia materia = materiaData.buscarMateria(codigo);
-            
-            if(materia!=null){
-            //Crear Inscripcion
-            Inscripcion inscripcion = new Inscripcion();
-            inscripcion.setAlumno(alumnoInscribir);
-            inscripcion.setMateria(materia);
-            inscripcion.setNota(0);
-            
-            //Crear una Inscripcion
-            InscripcionData inscripcionData = new InscripcionData();
-            inscripcionData.guardarInscripcion(inscripcion);
-            
-            //Refrescar la lista con materias NO Cursadas
-            List<Materia> updatedMaterias = inscripcionData.obtenerMateriasNOCursadas(alumnoInscribir.getIdAlumno());
-            refreshTable(updatedMaterias);
+        if (jMateriasInscriptas.isSelected() == false) {    //Crear Alumno
+            Alumno alumnoInscribir = (Alumno) jComboListarAlumno.getSelectedItem();
+            if (alumnoInscribir == null) {
+                return;
+            }
+            InscripcionData materiass = new InscripcionData();
+            int selectedRow = tablaListas.getSelectedRow();
+            int filaS = tablaListas.getSelectedRow();
+
+            if (filaS != -1) {
+                //Crear Materia
+                int codigo = Integer.parseInt(tablaListas.getValueAt(selectedRow, 2).toString());
+                MateriaData materiaDatas = new MateriaData();
+                Materia materia = materiaDatas.buscarMateria(codigo);
+
+                if (materia != null) {
+                    //Crear Inscripcion
+                    Inscripcion inscripcion = new Inscripcion();
+                    inscripcion.setAlumno(alumnoInscribir);
+                    inscripcion.setMateria(materia);
+                    inscripcion.setNota(0);
+
+                    //Crear una Inscripcion
+                    InscripcionData inscripcionData = new InscripcionData();
+                    inscripcionData.guardarInscripcion(inscripcion);
+
+                    //Refrescar la lista con materias NO Cursadas
+                    List<Materia> updatedMaterias = inscripcionData.obtenerMateriasNOCursadas(alumnoInscribir.getIdAlumno());
+                    refreshTable(updatedMaterias);
+                }
             }
         }
-    } 
     }//GEN-LAST:event_botonInscribirActionPerformed
 
     private void botonAnularInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnularInscripcionActionPerformed
-                                            
-    if(jMateriasInscriptas.isSelected()==true){
-        Alumno x = (Alumno) listarAlumno.getSelectedItem();
-        if(x == null && jMateriaNoInscriptas.isSelected()==true){return;}
-        
-        int selectedRow = tablaListas.getSelectedRow();
-        int filaS=tablaListas.getSelectedRow();
-        
-        if (filaS!=-1){
-            //Fijar en que materia estamos
-            String materiaName = tablaListas.getValueAt(selectedRow, 0).toString();
-            int codigo = Integer.parseInt(tablaListas.getValueAt(selectedRow, 2).toString());
-          
-      
-        int confirmResult = JOptionPane.showConfirmDialog(
-            this,
-            "¿Desea borrar la inscripción?",
-            "Confirmar Borrado",
-            JOptionPane.YES_NO_OPTION
-                
-        );
-            if (confirmResult == JOptionPane.YES_OPTION) {
-            // Confirmo Seleccion
-            InscripcionData inscripcionData = new InscripcionData();
-            inscripcionData.borrarInscripcionMateriaAlumno(x.getIdAlumno(), codigo);
 
-            //Refresh de la lista
-            List<Materia> updatedMaterias = inscripcionData.obtenerMateriasCursadas(x.getIdAlumno());
-            refreshTable(updatedMaterias);
-        }
-            
-            
-              
-        }else{
-            JOptionPane.showMessageDialog(this, "Porfavor seleccione una fila");
-        }   
-    }// TODO add your handling code here:
+        if (jMateriasInscriptas.isSelected() == true) {
+            Alumno x = (Alumno) jComboListarAlumno.getSelectedItem();
+            if (x == null && jMateriaNoInscriptas.isSelected() == true) {
+                return;
+            }
+
+            int selectedRow = tablaListas.getSelectedRow();
+            int filaS = tablaListas.getSelectedRow();
+
+            if (filaS != -1) {
+                //Fijar en que materia estamos
+                String materiaName = tablaListas.getValueAt(selectedRow, 0).toString();
+                int codigo = Integer.parseInt(tablaListas.getValueAt(selectedRow, 2).toString());
+
+                int confirmResult = JOptionPane.showConfirmDialog(
+                        this,
+                        "¿Desea borrar la inscripción?",
+                        "Confirmar Borrado",
+                        JOptionPane.YES_NO_OPTION
+                );
+                if (confirmResult == JOptionPane.YES_OPTION) {
+                    // Confirmo Seleccion
+                    InscripcionData inscripcionData = new InscripcionData();
+                    inscripcionData.borrarInscripcionMateriaAlumno(x.getIdAlumno(), codigo);
+
+                    //Refresh de la lista
+                    List<Materia> updatedMaterias = inscripcionData.obtenerMateriasCursadas(x.getIdAlumno());
+                    refreshTable(updatedMaterias);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Porfavor seleccione una fila");
+            }
+        }// TODO add your handling code here:
     }//GEN-LAST:event_botonAnularInscripcionActionPerformed
 
     private void jMateriasInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMateriasInscriptasActionPerformed
-        Alumno selectedAlumno = (Alumno) listarAlumno.getSelectedItem();
-        
+        Alumno selectedAlumno = (Alumno) jComboListarAlumno.getSelectedItem();
+
         InscripcionData materias = new InscripcionData();
-        if(selectedAlumno==null){
+        if (selectedAlumno == null) {
             return;
         }
         modelo.setRowCount(0);
         tablaListas.removeAll();
-        
-          
-         List<Materia> materiasCursadas = materias.obtenerMateriasCursadas(selectedAlumno.getIdAlumno());
-         cargarDatos(materiasCursadas);
-         
-         
+
+        List<Materia> materiasCursadas = materias.obtenerMateriasCursadas(selectedAlumno.getIdAlumno());
+        cargarDatos(materiasCursadas);
+
+
     }//GEN-LAST:event_jMateriasInscriptasActionPerformed
 
     private void jMateriaNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMateriaNoInscriptasActionPerformed
-     Alumno selectedAlumno = (Alumno) listarAlumno.getSelectedItem();
-        
+        Alumno selectedAlumno = (Alumno) jComboListarAlumno.getSelectedItem();
+
         InscripcionData materias = new InscripcionData();
-        if(selectedAlumno==null){
+        if (selectedAlumno == null) {
             return;
         }
         modelo.setRowCount(0);
         tablaListas.removeAll();
-       
-            List<Materia> materiasNOCursadas =  materias.obtenerMateriasNOCursadas(selectedAlumno.getIdAlumno());
-            cargarDatos(materiasNOCursadas);
-               
+
+        List<Materia> materiasNOCursadas = materias.obtenerMateriasNOCursadas(selectedAlumno.getIdAlumno());
+        cargarDatos(materiasNOCursadas);
+
 
     }//GEN-LAST:event_jMateriaNoInscriptasActionPerformed
 
     private void jListarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jListarAlumnoActionPerformed
 
-        Alumno selectedAlumno = (Alumno) listarAlumno.getSelectedItem();
+        Alumno selectedAlumno = (Alumno) jComboListarAlumno.getSelectedItem();
         if (selectedAlumno == null) {
             // podria agregar un mensaje de error 
             return;
@@ -365,6 +377,9 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_jListarAlumnoActionPerformed
 
+    private void jComboListarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboListarAlumnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboListarAlumnoActionPerformed
 
     private void armarcabezera() {
 
@@ -375,13 +390,14 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
 
     }
 
-
     public void cargarDatos(List<Materia> materias) {
+
         for (Materia materia : materias) {
             modelo.addRow(new Object[]{materia.getNombre(), materia.getAnioMateria(), materia.getIdMateria()});
         }
 
     }
+
 ///golaaaa
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TitleCodigo;
@@ -390,13 +406,13 @@ public class InscripcionFormuView extends javax.swing.JInternalFrame {
     private javax.swing.JButton botonAnularInscripcion;
     private javax.swing.JButton botonInscribir;
     private javax.swing.JButton botonSalir;
+    private javax.swing.JComboBox<Alumno> jComboListarAlumno;
     private javax.swing.JRadioButton jMateriaNoInscriptas;
     private javax.swing.JRadioButton jMateriasInscriptas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JComboBox<Alumno> listarAlumno;
     private javax.swing.JTable tablaListas;
     // End of variables declaration//GEN-END:variables
 
