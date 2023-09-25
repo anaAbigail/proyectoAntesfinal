@@ -111,7 +111,7 @@ public class InscripcionData {
 
     public List<Materia> obtenerMateriasNOCursadas(int idAlumno) {
         List<Materia> materiasNoCursadas = new ArrayList<>();
-        String sql = "SELECT idMateria, nombre, año FROM materia "
+        String sql = "SELECT idMateria, nombre, anioMateria,estado FROM materia "
                 + "WHERE idMateria NOT IN (SELECT idMateria FROM inscripcion WHERE idAlumno = ?)";
 
         try {

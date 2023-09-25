@@ -245,7 +245,9 @@ private DefaultTableModel modelo = new DefaultTableModel();
     
     private void refreshTable(List<Materia> materias) {
         modelo.setRowCount(0);
+        
 
+        
         for (Materia materia : materias) {
             modelo.addRow(new Object[]{materia.getNombre(), materia.getAnioMateria(), materia.getIdMateria()});
         }
@@ -358,6 +360,12 @@ private DefaultTableModel modelo = new DefaultTableModel();
 
     private void jListarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jListarAlumnoActionPerformed
 
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jListarAlumnoActionPerformed
+
+    private void jComboListarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboListarAlumnoActionPerformed
+
         Alumno selectedAlumno = (Alumno) jComboListarAlumno.getSelectedItem();
         if (selectedAlumno == null) {
             // podria agregar un mensaje de error 
@@ -372,13 +380,7 @@ private DefaultTableModel modelo = new DefaultTableModel();
             cargarDatos(InscData.obtenerMateriasCursadas(selectedAlumno.getIdAlumno()));
         } else if (jMateriaNoInscriptas.isSelected()) {
             cargarDatos(InscData.obtenerMateriasNOCursadas(selectedAlumno.getIdAlumno()));
-        }
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_jListarAlumnoActionPerformed
-
-    private void jComboListarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboListarAlumnoActionPerformed
-        // TODO add your handling code here:
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_jComboListarAlumnoActionPerformed
 
     private void armarcabezera() {
