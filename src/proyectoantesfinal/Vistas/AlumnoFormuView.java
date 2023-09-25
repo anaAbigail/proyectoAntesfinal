@@ -242,7 +242,6 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
      java.util.Date utilDate= jdFechaNacimiento.getDate();
      java.sql.Date sqlDate= new java.sql.Date(utilDate.getTime());
      LocalDate fechaNac = sqlDate.toLocalDate();
-     
         Alumno alumnito = new Alumno(dni,apellido, nombre,fechaNac, estado);
      AlumnoData agregar =new AlumnoData();
       agregar.guardarAlumno(alumnito);
