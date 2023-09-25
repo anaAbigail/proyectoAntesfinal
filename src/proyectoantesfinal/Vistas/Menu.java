@@ -105,7 +105,7 @@ public class Menu extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2))
-                .addGap(0, 133, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         escritorio.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -130,7 +130,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.setName("");
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/alumno.png"))); // NOI18N
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoantesfinal/vistas/Imagenes/alumno1.png"))); // NOI18N
 
         jFormularioAlumno.setText("Formulario de Alumno");
         jFormularioAlumno.addActionListener(new java.awt.event.ActionListener() {
@@ -142,7 +142,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Materia");
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoantesfinal/vistas/Imagenes/materia2.png"))); // NOI18N
         jMenu2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu2ActionPerformed(evt);
@@ -159,7 +159,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Administración");
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoantesfinal/vistas/Imagenes/administracion1.png"))); // NOI18N
         jMenu3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu3ActionPerformed(evt);
@@ -184,7 +184,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        AlumnosXMateria.setText("Consultas");
+        AlumnosXMateria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoantesfinal/vistas/Imagenes/consultas.png"))); // NOI18N
 
         jMenuItem4.setText("Alumnos por Materia");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -196,7 +196,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(AlumnosXMateria);
 
-        jMenu5.setText("Salir");
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoantesfinal/vistas/Imagenes/salir.png"))); // NOI18N
         jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu5MouseClicked(evt);
