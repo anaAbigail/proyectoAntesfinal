@@ -75,6 +75,7 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
         jbNuevo.setBackground(new java.awt.Color(153, 204, 255));
         jbNuevo.setForeground(new java.awt.Color(0, 0, 0));
         jbNuevo.setText("Nuevo");
+        jbNuevo.setToolTipText("Para agregar nuevos alumnos");
         jbNuevo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jbNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,6 +86,7 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
         jbEliminar.setBackground(new java.awt.Color(255, 204, 204));
         jbEliminar.setForeground(new java.awt.Color(0, 0, 0));
         jbEliminar.setText("Eliminar");
+        jbEliminar.setToolTipText("Para eliminar alumnos ");
         jbEliminar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jbEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,6 +97,7 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
         jbGuardar.setBackground(new java.awt.Color(204, 255, 204));
         jbGuardar.setForeground(new java.awt.Color(0, 0, 0));
         jbGuardar.setText("Guardar");
+        jbGuardar.setToolTipText("Guardar cambios");
         jbGuardar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jbGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,10 +116,13 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
         });
 
         JTdocumentoAlumno.setBackground(new java.awt.Color(228, 228, 228));
+        JTdocumentoAlumno.setToolTipText("Escriba su documento ");
 
         JTnombreAlumno.setBackground(new java.awt.Color(228, 228, 228));
+        JTnombreAlumno.setToolTipText("Escriba  s");
 
         JTapellidoAlumno.setBackground(new java.awt.Color(228, 228, 228));
+        JTapellidoAlumno.setToolTipText("Escriba su apellido ");
 
         jbotonEstado.setBackground(new java.awt.Color(255, 255, 255));
         jbotonEstado.setForeground(new java.awt.Color(255, 255, 255));
@@ -125,6 +131,7 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
         BotonBuscar.setBackground(new java.awt.Color(204, 204, 255));
         BotonBuscar.setForeground(new java.awt.Color(0, 0, 0));
         BotonBuscar.setText("Buscar");
+        BotonBuscar.setToolTipText("");
         BotonBuscar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED, new java.awt.Color(102, 102, 255), new java.awt.Color(102, 102, 255), new java.awt.Color(153, 153, 255), new java.awt.Color(153, 102, 255)));
         BotonBuscar.setMaximumSize(new java.awt.Dimension(76, 26));
         BotonBuscar.setMinimumSize(new java.awt.Dimension(76, 26));

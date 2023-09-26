@@ -63,6 +63,7 @@ public class MateriaFormuView extends javax.swing.JInternalFrame {
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
 
         TextForCodigo.setBackground(new java.awt.Color(220, 220, 220));
+        TextForCodigo.setToolTipText("Ingrese Codigo id de materia ");
 
         TitleEstado.setBackground(new java.awt.Color(255, 255, 255));
         TitleEstado.setFont(new java.awt.Font("Cambria Math", 0, 18)); // NOI18N
@@ -74,6 +75,7 @@ public class MateriaFormuView extends javax.swing.JInternalFrame {
         ButtonNuevo.setBackground(new java.awt.Color(153, 204, 255));
         ButtonNuevo.setForeground(new java.awt.Color(0, 0, 0));
         ButtonNuevo.setText("Nuevo");
+        ButtonNuevo.setToolTipText("Para guardar una materia nueva");
         ButtonNuevo.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 153, 255), new java.awt.Color(0, 204, 255)));
         ButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,6 +93,7 @@ public class MateriaFormuView extends javax.swing.JInternalFrame {
         ButtonGuardar.setBackground(new java.awt.Color(204, 255, 204));
         ButtonGuardar.setForeground(new java.awt.Color(0, 0, 0));
         ButtonGuardar.setText("Guardar");
+        ButtonGuardar.setToolTipText("Gurdar cambios");
         ButtonGuardar.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(51, 255, 51), new java.awt.Color(0, 204, 0)));
         ButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
