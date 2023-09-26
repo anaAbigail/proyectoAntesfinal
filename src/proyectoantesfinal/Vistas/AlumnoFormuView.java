@@ -268,8 +268,8 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
-        if (JTdocumentoAlumno.getText().isEmpty()) {
+    public void verificarCampos(){
+         if (JTdocumentoAlumno.getText().isEmpty()) {
             return;
         }
         if(JTapellidoAlumno.getText().isEmpty()){
@@ -281,6 +281,12 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
         if(jbotonEstado.isSelected()==false){
             return;
         }
+        if(jdFechaNacimiento.getDate()==null){
+            return;
+        }
+    }
+    private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
+        verificarCampos();
         
         try{
          if(JTdocumentoAlumno.getText().length()==8){
@@ -296,11 +302,14 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
                 Alumno alumnito = new Alumno(dni,apellido, nombre,fechaNac, estado);
                 AlumnoData agregar =new AlumnoData();
                 agregar.guardarAlumno(alumnito);
+                
+                
                 JTdocumentoAlumno.setText("");
                 JTapellidoAlumno.setText("");
                 JTnombreAlumno.setText("");
                 jbotonEstado.setSelected(false);
                 jdFechaNacimiento.setDate(null);
+                
            
          }else{
              JOptionPane.showMessageDialog(this, "Porfavor ingrese un numero de documento valido.");
