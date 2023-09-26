@@ -30,7 +30,7 @@ private DefaultTableModel modelo = new DefaultTableModel();
         jMateriaNoInscriptas.setSelected(true);
         jComboListarAlumno.setSelectedItem(1);
 
-        Alumno SeleccionarAlumno = (Alumno) jComboListarAlumno.getSelectedItem();
+        
         AlumnoData Alumnito = new AlumnoData();
         List<Alumno> alumnitos = Alumnito.listarAlumnos();
 
@@ -47,6 +47,7 @@ private DefaultTableModel modelo = new DefaultTableModel();
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        MateriasCursar = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         TitleNombre = new javax.swing.JLabel();
         botonSalir = new javax.swing.JButton();
@@ -114,6 +115,7 @@ private DefaultTableModel modelo = new DefaultTableModel();
         TitleCodigo.setText("Seleccione un alumno");
 
         jMateriasInscriptas.setBackground(new java.awt.Color(255, 255, 255));
+        MateriasCursar.add(jMateriasInscriptas);
         jMateriasInscriptas.setForeground(new java.awt.Color(0, 0, 0));
         jMateriasInscriptas.setText("Materias Inscriptas");
         jMateriasInscriptas.addActionListener(new java.awt.event.ActionListener() {
@@ -123,6 +125,7 @@ private DefaultTableModel modelo = new DefaultTableModel();
         });
 
         jMateriaNoInscriptas.setBackground(new java.awt.Color(255, 255, 255));
+        MateriasCursar.add(jMateriaNoInscriptas);
         jMateriaNoInscriptas.setForeground(new java.awt.Color(0, 0, 0));
         jMateriaNoInscriptas.setText("Materias no inscriptas");
         jMateriaNoInscriptas.addActionListener(new java.awt.event.ActionListener() {
@@ -243,29 +246,20 @@ private DefaultTableModel modelo = new DefaultTableModel();
         this.dispose();
     }//GEN-LAST:event_botonSalirActionPerformed
     
-    private void refreshTable(List<Materia> materias) {
-        modelo.setRowCount(0);
-        
 
-        
-        for (Materia materia : materias) {
-            modelo.addRow(new Object[]{materia.getNombre(), materia.getAnioMateria(), materia.getIdMateria()});
-        }
-    }
-    
     private void botonInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInscribirActionPerformed
         if (jMateriasInscriptas.isSelected() == false) {    //Crear Alumno
             Alumno alumnoInscribir = (Alumno) jComboListarAlumno.getSelectedItem();
             if (alumnoInscribir == null) {
                 return;
             }
-            InscripcionData materiass = new InscripcionData();
-            int selectedRow = tablaListas.getSelectedRow();
+            
+            
             int filaS = tablaListas.getSelectedRow();
 
             if (filaS != -1) {
                 //Crear Materia
-                int codigo = Integer.parseInt(tablaListas.getValueAt(selectedRow, 2).toString());
+                int codigo = Integer.parseInt(tablaListas.getValueAt(filaS, 2).toString());
                 MateriaData materiaDatas = new MateriaData();
                 Materia materia = materiaDatas.buscarMateria(codigo);
 
@@ -282,7 +276,7 @@ private DefaultTableModel modelo = new DefaultTableModel();
 
                     //Refrescar la lista con materias NO Cursadas
                     List<Materia> updatedMaterias = inscripcionData.obtenerMateriasNOCursadas(alumnoInscribir.getIdAlumno());
-                    refreshTable(updatedMaterias);
+                    cargarDatos(updatedMaterias);
                 }
             }
         }
@@ -296,13 +290,13 @@ private DefaultTableModel modelo = new DefaultTableModel();
                 return;
             }
 
-            int selectedRow = tablaListas.getSelectedRow();
+            
             int filaS = tablaListas.getSelectedRow();
 
             if (filaS != -1) {
                 //Fijar en que materia estamos
-                String materiaName = tablaListas.getValueAt(selectedRow, 0).toString();
-                int codigo = Integer.parseInt(tablaListas.getValueAt(selectedRow, 2).toString());
+               
+                int codigo = Integer.parseInt(tablaListas.getValueAt(filaS, 2).toString());
 
                 int confirmResult = JOptionPane.showConfirmDialog(
                         this,
@@ -317,7 +311,7 @@ private DefaultTableModel modelo = new DefaultTableModel();
 
                     //Refresh de la lista
                     List<Materia> updatedMaterias = inscripcionData.obtenerMateriasCursadas(x.getIdAlumno());
-                    refreshTable(updatedMaterias);
+                    cargarDatos(updatedMaterias);
                 }
 
             } else {
@@ -373,7 +367,7 @@ private DefaultTableModel modelo = new DefaultTableModel();
         }
 
         modelo.setRowCount(0); // Limpia la tabla
-
+        tablaListas.removeAll();
         InscripcionData InscData = new InscripcionData();
 
         if (jMateriasInscriptas.isSelected()) {
@@ -393,7 +387,7 @@ private DefaultTableModel modelo = new DefaultTableModel();
     }
 
     public void cargarDatos(List<Materia> materias) {
-
+        modelo.setRowCount(0);
         for (Materia materia : materias) {
             modelo.addRow(new Object[]{materia.getNombre(), materia.getAnioMateria(), materia.getIdMateria()});
         }
@@ -402,6 +396,7 @@ private DefaultTableModel modelo = new DefaultTableModel();
 
 ///golaaaa
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup MateriasCursar;
     private javax.swing.JLabel TitleCodigo;
     private javax.swing.JLabel TitleGestionMateria;
     private javax.swing.JLabel TitleNombre;

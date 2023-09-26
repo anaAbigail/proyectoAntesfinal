@@ -22,6 +22,7 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jToggleButton1 = new javax.swing.JToggleButton();
         jPanel1 = new javax.swing.JPanel();
         JLformualumno = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -40,6 +41,9 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
         jbotonEstado = new javax.swing.JRadioButton();
         BotonBuscar = new javax.swing.JButton();
         jdFechaNacimiento = new com.toedter.calendar.JDateChooser();
+        jBLimpiar = new javax.swing.JToggleButton();
+
+        jToggleButton1.setText("jToggleButton1");
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -146,6 +150,13 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
         jdFechaNacimiento.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, java.awt.Color.blue));
         jdFechaNacimiento.setForeground(new java.awt.Color(255, 255, 255));
 
+        jBLimpiar.setText("Limpiar Campos");
+        jBLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBLimpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -184,9 +195,12 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
                         .addGap(38, 38, 38)
                         .addComponent(jbNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jBLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(26, 26, 26)
                         .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(40, Short.MAX_VALUE))
@@ -218,7 +232,9 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jdFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jBLimpiar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -246,16 +262,46 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
-     int dni=Integer.parseInt(JTdocumentoAlumno.getText());
-     String apellido = JTapellidoAlumno.getText();
-     String nombre = JTnombreAlumno.getText();
-     boolean estado = jbotonEstado.isSelected();
-     java.util.Date utilDate= jdFechaNacimiento.getDate();
-     java.sql.Date sqlDate= new java.sql.Date(utilDate.getTime());
-     LocalDate fechaNac = sqlDate.toLocalDate();
-        Alumno alumnito = new Alumno(dni,apellido, nombre,fechaNac, estado);
-     AlumnoData agregar =new AlumnoData();
-      agregar.guardarAlumno(alumnito);
+        if (JTdocumentoAlumno.getText().isEmpty()) {
+            return;
+        }
+        if(JTapellidoAlumno.getText().isEmpty()){
+            return;
+        }
+        if (JTnombreAlumno.getText().isEmpty()) {
+            return;
+        }
+        if(jbotonEstado.isSelected()==false){
+            return;
+        }
+        
+        try{
+         if(JTdocumentoAlumno.getText().length()==8){
+            int dni=Integer.parseInt(JTdocumentoAlumno.getText());
+            String apellido = JTapellidoAlumno.getText();
+            String nombre = JTnombreAlumno.getText();
+            boolean estado = jbotonEstado.isSelected();
+    
+            java.util.Date utilDate= jdFechaNacimiento.getDate();
+            java.sql.Date sqlDate= new java.sql.Date(utilDate.getTime());
+            LocalDate fechaNac = sqlDate.toLocalDate();       
+          
+                Alumno alumnito = new Alumno(dni,apellido, nombre,fechaNac, estado);
+                AlumnoData agregar =new AlumnoData();
+                agregar.guardarAlumno(alumnito);
+                JTdocumentoAlumno.setText("");
+                JTapellidoAlumno.setText("");
+                JTnombreAlumno.setText("");
+                jbotonEstado.setSelected(false);
+                jdFechaNacimiento.setDate(null);
+           
+         }else{
+             JOptionPane.showMessageDialog(this, "Porfavor ingrese un numero de documento valido.");
+         }
+     }catch(NumberFormatException ex){
+         JOptionPane.showMessageDialog(this, "Porfavor ingrese un numero de documento valido.");
+     }
+       
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
@@ -298,9 +344,7 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
             jbotonEstado.setSelected(alumnito.isEstado());
             jdFechaNacimiento.setDate(Date.valueOf(alumnito.getFechaNacimiento()));
             
-        } else{
-           JOptionPane.showMessageDialog(null, "El alumno no fue encontrado, compruebe el DNI entrado."); 
-        }
+        } 
     }//GEN-LAST:event_BotonBuscarActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
@@ -312,6 +356,14 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jbEliminarActionPerformed
 
+    private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
+        JTapellidoAlumno.setText("");
+        JTdocumentoAlumno.setText("");
+        JTnombreAlumno.setText("");
+        jbotonEstado.setSelected(false);
+        jdFechaNacimiento.setDate(null);
+    }//GEN-LAST:event_jBLimpiarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonBuscar;
@@ -319,6 +371,7 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField JTapellidoAlumno;
     private javax.swing.JTextField JTdocumentoAlumno;
     private javax.swing.JTextField JTnombreAlumno;
+    private javax.swing.JToggleButton jBLimpiar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -326,6 +379,7 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JButton jbEliminar;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbNuevo;
