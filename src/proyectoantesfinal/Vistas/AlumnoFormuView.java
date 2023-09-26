@@ -246,7 +246,6 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
      java.util.Date utilDate= jdFechaNacimiento.getDate();
      java.sql.Date sqlDate= new java.sql.Date(utilDate.getTime());
      LocalDate fechaNac = sqlDate.toLocalDate();
-     
         Alumno alumnito = new Alumno(dni,apellido, nombre,fechaNac, estado);
      AlumnoData agregar =new AlumnoData();
       agregar.guardarAlumno(alumnito);
@@ -269,12 +268,12 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
         
         try {
             LocalDate fechaNac = jdFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        String nombre = JTnombreAlumno.getText();
-        String apellido = JTapellidoAlumno.getText();
-        int dni = Integer.parseInt(JTdocumentoAlumno.getText());
-        boolean estado = jbotonEstado.isSelected();
-        Alumno alumno=new Alumno(dni,apellido ,nombre,fechaNac,estado);
-        alumnoData.modificarAlumno(alumno);
+            String nombre = JTnombreAlumno.getText();
+            String apellido = JTapellidoAlumno.getText();
+            int dni = Integer.parseInt(JTdocumentoAlumno.getText());
+            boolean estado = jbotonEstado.isSelected();
+            Alumno alumno=new Alumno(dni,apellido ,nombre,fechaNac,estado);
+            alumnoData.modificarAlumno(alumno);
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Ingrese los números correspondientes");
         }

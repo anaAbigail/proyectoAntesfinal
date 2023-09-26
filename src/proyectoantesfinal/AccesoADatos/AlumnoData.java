@@ -40,7 +40,6 @@ public class AlumnoData {
 //                 System.out.println(rs.getInt());
                 alumno.setIdAlumno(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Alumno añadido con exito.");
-
             }
             ps.close();
 
@@ -48,7 +47,6 @@ public class AlumnoData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno" + ex.getMessage());
 
         }
-
     }
 
     public Alumno buscarAlumno(int id) {

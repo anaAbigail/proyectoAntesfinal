@@ -30,8 +30,8 @@ public class MateriaData {
             ps.executeUpdate(); 
             JOptionPane.showMessageDialog(null, "Materia guardada con éxito");
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "error al guardar materia");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "La materia ya existe");
         }
     }
     
@@ -49,13 +49,11 @@ public class MateriaData {
                     materia.setNombre(rs.getString("nombre"));
                     materia.setAnioMateria(rs.getInt("anioMateria"));
                     materia.setEstado(rs.getBoolean("estado"));
-                }else{
-                    JOptionPane.showMessageDialog(null, "no existe la materia");
                 }
                 ps.close();
                 
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null,"error al acceder a la tabla materia");
+                JOptionPane.showMessageDialog(null,"Error al acceder a la tabla materia");
             }
             return materia;
       
@@ -90,7 +88,7 @@ public class MateriaData {
             ps.setInt(1, id);
             int sqlDelete = ps.executeUpdate();
             if (sqlDelete==1) {
-                JOptionPane.showMessageDialog(null, "Se eliminó materia");
+                JOptionPane.showMessageDialog(null, "Se deshabilito la materia");
             }else{
                 JOptionPane.showMessageDialog(null, "No se encontró materia");
             }
@@ -116,7 +114,7 @@ public class MateriaData {
                }
             ps.close();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tawbla materia "+ e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla materia "+ e.getMessage());
         }
            return materias;
     }
