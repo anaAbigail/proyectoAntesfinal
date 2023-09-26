@@ -4,6 +4,8 @@
  */
 package proyectoantesfinal.Vistas;
 
+import javax.swing.ToolTipManager;
+
 /**
  *
  * @author Programita
@@ -32,16 +34,16 @@ public class Menu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        jMenuAlumno = new javax.swing.JMenu();
         jFormularioAlumno = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuMateria = new javax.swing.JMenu();
         jFormularioMateria = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        jMenuAdmin = new javax.swing.JMenu();
         jManejoDeInscripciones = new javax.swing.JMenuItem();
         ManipulacionDeNotas = new javax.swing.JMenuItem();
-        AlumnosXMateria = new javax.swing.JMenu();
+        JMenuConsultas = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
+        jMenuSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -117,7 +119,7 @@ public class Menu extends javax.swing.JFrame {
                         .addGap(76, 76, 76)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         escritorio.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -142,10 +144,30 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.setName("");
 
-        jMenu1.setBackground(new java.awt.Color(255, 255, 255));
-        jMenu1.setForeground(new java.awt.Color(0, 0, 0));
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoantesfinal/vistas/Imagenes/alumno1.png"))); // NOI18N
-        jMenu1.setText("Alumno");
+        jMenuAlumno.setBackground(new java.awt.Color(255, 255, 255));
+        jMenuAlumno.setForeground(new java.awt.Color(0, 0, 0));
+        jMenuAlumno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoantesfinal/vistas/Imagenes/alumno1.png"))); // NOI18N
+        jMenuAlumno.setToolTipText("Alumno");
+        jMenuAlumno.setAlignmentX(0.7F);
+        jMenuAlumno.setMargin(new java.awt.Insets(5, 11, 3, 25));
+        jMenuAlumno.setPreferredSize(new java.awt.Dimension(80, 20));
+        ToolTipManager.sharedInstance().setInitialDelay(300); // Establece el tiempo de exposición en 500 ms (medio segundo)
+        jMenuAlumno.addMenuDragMouseListener(new javax.swing.event.MenuDragMouseListener() {
+            public void menuDragMouseDragged(javax.swing.event.MenuDragMouseEvent evt) {
+            }
+            public void menuDragMouseEntered(javax.swing.event.MenuDragMouseEvent evt) {
+                jMenuAlumnoMenuDragMouseEntered(evt);
+            }
+            public void menuDragMouseExited(javax.swing.event.MenuDragMouseEvent evt) {
+            }
+            public void menuDragMouseReleased(javax.swing.event.MenuDragMouseEvent evt) {
+            }
+        });
+        jMenuAlumno.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jMenuAlumnoMouseEntered(evt);
+            }
+        });
 
         jFormularioAlumno.setText("Formulario de Alumno");
         jFormularioAlumno.addActionListener(new java.awt.event.ActionListener() {
@@ -153,15 +175,17 @@ public class Menu extends javax.swing.JFrame {
                 jFormularioAlumnoActionPerformed(evt);
             }
         });
-        jMenu1.add(jFormularioAlumno);
+        jMenuAlumno.add(jFormularioAlumno);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jMenuAlumno);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoantesfinal/vistas/Imagenes/materia2.png"))); // NOI18N
-        jMenu2.setText("Materia");
-        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuMateria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoantesfinal/vistas/Imagenes/materia2.png"))); // NOI18N
+        jMenuMateria.setToolTipText("Materia");
+        jMenuMateria.setAlignmentX(0.7F);
+        jMenuMateria.setPreferredSize(new java.awt.Dimension(80, 20));
+        jMenuMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu2ActionPerformed(evt);
+                jMenuMateriaActionPerformed(evt);
             }
         });
 
@@ -171,17 +195,18 @@ public class Menu extends javax.swing.JFrame {
                 jFormularioMateriaActionPerformed(evt);
             }
         });
-        jMenu2.add(jFormularioMateria);
+        jMenuMateria.add(jFormularioMateria);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jMenuMateria);
 
-        jMenu3.setBackground(new java.awt.Color(255, 255, 255));
-        jMenu3.setForeground(new java.awt.Color(0, 0, 0));
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoantesfinal/vistas/Imagenes/administracion1.png"))); // NOI18N
-        jMenu3.setText("Administracion");
-        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+        jMenuAdmin.setBackground(new java.awt.Color(255, 255, 255));
+        jMenuAdmin.setForeground(new java.awt.Color(0, 0, 0));
+        jMenuAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoantesfinal/vistas/Imagenes/administracion1.png"))); // NOI18N
+        jMenuAdmin.setToolTipText("Administración");
+        jMenuAdmin.setPreferredSize(new java.awt.Dimension(80, 20));
+        jMenuAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu3ActionPerformed(evt);
+                jMenuAdminActionPerformed(evt);
             }
         });
 
@@ -191,7 +216,7 @@ public class Menu extends javax.swing.JFrame {
                 jManejoDeInscripcionesActionPerformed(evt);
             }
         });
-        jMenu3.add(jManejoDeInscripciones);
+        jMenuAdmin.add(jManejoDeInscripciones);
 
         ManipulacionDeNotas.setText("Manipulacion de Notas");
         ManipulacionDeNotas.addActionListener(new java.awt.event.ActionListener() {
@@ -199,12 +224,13 @@ public class Menu extends javax.swing.JFrame {
                 ManipulacionDeNotasActionPerformed(evt);
             }
         });
-        jMenu3.add(ManipulacionDeNotas);
+        jMenuAdmin.add(ManipulacionDeNotas);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(jMenuAdmin);
 
-        AlumnosXMateria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoantesfinal/vistas/Imagenes/consultas.png"))); // NOI18N
-        AlumnosXMateria.setText("Consultas");
+        JMenuConsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoantesfinal/vistas/Imagenes/consultas.png"))); // NOI18N
+        JMenuConsultas.setToolTipText("Consultas");
+        JMenuConsultas.setPreferredSize(new java.awt.Dimension(80, 20));
 
         jMenuItem4.setText("Alumnos por Materia");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -212,23 +238,23 @@ public class Menu extends javax.swing.JFrame {
                 jMenuItem4ActionPerformed(evt);
             }
         });
-        AlumnosXMateria.add(jMenuItem4);
+        JMenuConsultas.add(jMenuItem4);
 
-        jMenuBar1.add(AlumnosXMateria);
+        jMenuBar1.add(JMenuConsultas);
 
-        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoantesfinal/vistas/Imagenes/salir.png"))); // NOI18N
-        jMenu5.setText("Salir");
-        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+        jMenuSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoantesfinal/vistas/Imagenes/salir.png"))); // NOI18N
+        jMenuSalir.setToolTipText("Salir");
+        jMenuSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu5MouseClicked(evt);
+                jMenuSalirMouseClicked(evt);
             }
         });
-        jMenu5.addActionListener(new java.awt.event.ActionListener() {
+        jMenuSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu5ActionPerformed(evt);
+                jMenuSalirActionPerformed(evt);
             }
         });
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(jMenuSalir);
 
         setJMenuBar(jMenuBar1);
 
@@ -247,78 +273,88 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jFormularioAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormularioAlumnoActionPerformed
-        
+
         //escritorio.removeAll(); //le decimos al escritorio que si hay una ventana puesta, la remueva
         escritorio.repaint();  // Aca le pedimos al escritorio que se redibuje (como que se actualice)
         AlumnoFormuView formuA = new AlumnoFormuView(); //instaciamos un objeto de nuestra vista que es AlumnoFormuView. esto se guarda en una variable "formuA"
         formuA.setVisible(true); //al instanciar una ventana por defecto está invisible, entoces acá lo ponemos visile 
-       
+
         escritorio.add(formuA); // agregamos el elemento formuA(que es el internalFrame) a la ventana 
         escritorio.moveToFront(formuA); // le decimos al escritorio que traiga al frente la ventana internalframe 
-        
-        
+
+
     }//GEN-LAST:event_jFormularioAlumnoActionPerformed
 
-    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+    private void jMenuMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMateriaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu2ActionPerformed
+    }//GEN-LAST:event_jMenuMateriaActionPerformed
 
     private void jFormularioMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormularioMateriaActionPerformed
-     
-        
-        escritorio.repaint();  
-        MateriaFormuView formuM = new MateriaFormuView(); 
+
+        escritorio.repaint();
+        MateriaFormuView formuM = new MateriaFormuView();
         formuM.setVisible(true);
-       
-        escritorio.add(formuM); 
-        escritorio.moveToFront(formuM);   
+
+        escritorio.add(formuM);
+        escritorio.moveToFront(formuM);
     }//GEN-LAST:event_jFormularioMateriaActionPerformed
 
     private void jManejoDeInscripcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jManejoDeInscripcionesActionPerformed
-        escritorio.repaint();  
-        InscripcionFormuView formuInscripcion = new InscripcionFormuView(); 
+        escritorio.repaint();
+        InscripcionFormuView formuInscripcion = new InscripcionFormuView();
         formuInscripcion.setVisible(true);
-       
-        escritorio.add(formuInscripcion); 
-        
-        escritorio.moveToFront(formuInscripcion);        
+
+        escritorio.add(formuInscripcion);
+
+        escritorio.moveToFront(formuInscripcion);
     }//GEN-LAST:event_jManejoDeInscripcionesActionPerformed
 
     private void ManipulacionDeNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManipulacionDeNotasActionPerformed
-    
-        escritorio.repaint();  
-        ActualizacionNotasFormuView ActNotas = new ActualizacionNotasFormuView(); 
+
+        escritorio.repaint();
+        ActualizacionNotasFormuView ActNotas = new ActualizacionNotasFormuView();
         ActNotas.setVisible(true);
-       
-        escritorio.add(ActNotas); 
-        escritorio.moveToFront(ActNotas); 
+
+        escritorio.add(ActNotas);
+        escritorio.moveToFront(ActNotas);
     }//GEN-LAST:event_ManipulacionDeNotasActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-     
-        escritorio.repaint();  
-        ConsultasView ConsultasView = new ConsultasView(); 
+
+        escritorio.repaint();
+        ConsultasView ConsultasView = new ConsultasView();
         ConsultasView.setVisible(true);
-       
-        escritorio.add(ConsultasView); 
-        escritorio.moveToFront(ConsultasView); 
+
+        escritorio.add(ConsultasView);
+        escritorio.moveToFront(ConsultasView);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-       System.exit(0);
-    }//GEN-LAST:event_jMenu5MouseClicked
+    private void jMenuSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuSalirMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jMenuSalirMouseClicked
 
-    private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
+    private void jMenuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSalirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu5ActionPerformed
+    }//GEN-LAST:event_jMenuSalirActionPerformed
 
-    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+    private void jMenuAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAdminActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu3ActionPerformed
+    }//GEN-LAST:event_jMenuAdminActionPerformed
+//Para al pasar el mause diga el nombre del menú
+    private void jMenuAlumnoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuAlumnoMouseEntered
+ 
+    }//GEN-LAST:event_jMenuAlumnoMouseEntered
+  
 
-    /***/
+    private void jMenuAlumnoMenuDragMouseEntered(javax.swing.event.MenuDragMouseEvent evt) {//GEN-FIRST:event_jMenuAlumnoMenuDragMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuAlumnoMenuDragMouseEntered
+
+    /**
+     * 
+     */
     public static void vistas() {
-      //HOLA
+        //HOLA
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -346,7 +382,7 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu AlumnosXMateria;
+    private javax.swing.JMenu JMenuConsultas;
     private javax.swing.JMenuItem ManipulacionDeNotas;
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuItem jFormularioAlumno;
@@ -354,12 +390,12 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuItem jManejoDeInscripciones;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenuAdmin;
+    private javax.swing.JMenu jMenuAlumno;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenu jMenuMateria;
+    private javax.swing.JMenu jMenuSalir;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
@@ -368,5 +404,5 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea2;
     // End of variables declaration//GEN-END:variables
 
-
+// EFECTO MAUSE PARA MENUS 
 }

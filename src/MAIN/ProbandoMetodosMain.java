@@ -1,9 +1,12 @@
 package MAIN;
 
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.Connection;
 import java.time.LocalDate;
 import java.util.List;
+import javax.swing.JMenu;
 import proyectoantesfinal.AccesoADatos.AlumnoData;
 import proyectoantesfinal.AccesoADatos.Conexion;
 import proyectoantesfinal.AccesoADatos.InscripcionData;
@@ -140,6 +143,12 @@ public class ProbandoMetodosMain {
         //inscripcionData.borrarInscripcionMateriaAlumno(33, 4);
                           
     }  
+
+    private static class MiVentana {
+
+        public MiVentana() {
+        }
+    }
     
       
 }
