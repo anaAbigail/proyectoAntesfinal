@@ -40,8 +40,8 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
         JTapellidoAlumno = new javax.swing.JTextField();
         jbotonEstado = new javax.swing.JRadioButton();
         BotonBuscar = new javax.swing.JButton();
-        jdFechaNacimiento = new com.toedter.calendar.JDateChooser();
         jBLimpiar = new javax.swing.JToggleButton();
+        jdFechaNacimiento = new com.toedter.calendar.JDateChooser();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -146,10 +146,6 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
             }
         });
 
-        jdFechaNacimiento.setBackground(new java.awt.Color(204, 255, 255));
-        jdFechaNacimiento.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, java.awt.Color.blue));
-        jdFechaNacimiento.setForeground(new java.awt.Color(255, 255, 255));
-
         jBLimpiar.setBackground(new java.awt.Color(255, 255, 204));
         jBLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoantesfinal/Vistas/Imagenes/broom.png"))); // NOI18N
         jBLimpiar.setToolTipText("Limpiar campos");
@@ -175,10 +171,7 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
                                 .addGap(27, 27, 27)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jdFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel5)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel1)
@@ -192,7 +185,9 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
                                                 .addGap(18, 18, 18)
                                                 .addComponent(BotonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(JTapellidoAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(JTnombreAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jdFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(JTnombreAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(156, 156, 156)
                                 .addComponent(JLformualumno)))
@@ -238,11 +233,11 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jbotonEstado))
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5)
                             .addComponent(jdFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(55, 55, 55)
+                        .addGap(57, 57, 57)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jbGuardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                             .addComponent(jbEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -268,30 +263,45 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void verificarCampos(){
+    public void verificarCampos() throws NullPointerException{
+        
+       
+        
+    }
+    private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
          if (JTdocumentoAlumno.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(this, "Porfavor ingrese un numero de documento valido.");
             return;
         }
         if(JTapellidoAlumno.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Porfavor ingrese un apellido.");
             return;
         }
         if (JTnombreAlumno.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Porfavor ingrese un nombre.");
             return;
         }
         if(jbotonEstado.isSelected()==false){
+            JOptionPane.showMessageDialog(this, "Porfavor ingrese el estado adecuado.");
             return;
         }
         if(jdFechaNacimiento.getDate()==null){
+            JOptionPane.showMessageDialog(this, "Porfavor ingrese una fecha.");
             return;
+            
         }
-    }
-    private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
-        verificarCampos();
         
         try{
          if(JTdocumentoAlumno.getText().length()==8){
             int dni=Integer.parseInt(JTdocumentoAlumno.getText());
+            
+            try{
+                int nombre = Integer.parseInt(JTnombreAlumno.getText());
+                int apellido =Integer.parseInt(JTapellidoAlumno.getText());
+                JOptionPane.showMessageDialog(this, "Ingrese un nombre correcto");
+            }catch (NumberFormatException ex2){
             String apellido = JTapellidoAlumno.getText();
+            
             String nombre = JTnombreAlumno.getText();
             boolean estado = jbotonEstado.isSelected();
     
@@ -309,11 +319,12 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
                 JTnombreAlumno.setText("");
                 jbotonEstado.setSelected(false);
                 jdFechaNacimiento.setDate(null);
-                
+            }   
            
          }else{
              JOptionPane.showMessageDialog(this, "Porfavor ingrese un numero de documento valido.");
          }
+         
      }catch(NumberFormatException ex){
          JOptionPane.showMessageDialog(this, "Porfavor ingrese un numero de documento valido.");
      }
@@ -334,15 +345,40 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
 */
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         AlumnoData alumnoData = new AlumnoData();
+         if (JTdocumentoAlumno.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(this, "Porfavor ingrese un numero de documento valido.");
+            return;
+        }
+        if(JTapellidoAlumno.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Porfavor ingrese un apellido.");
+            return;
+        }
+        if (JTnombreAlumno.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Porfavor ingrese un nombre.");
+            return;
+        }
+        if(jbotonEstado.isSelected()==false){
+            JOptionPane.showMessageDialog(this, "Porfavor ingrese el estado adecuado.");
+            return;
+        }
+        if(jdFechaNacimiento.getDate()==null){
+            JOptionPane.showMessageDialog(this, "Porfavor ingrese una fecha.");
+            return;    
+        }
         
         try {
             LocalDate fechaNac = jdFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            String nombre = JTnombreAlumno.getText();
-            String apellido = JTapellidoAlumno.getText();
-            int dni = Integer.parseInt(JTdocumentoAlumno.getText());
-            boolean estado = jbotonEstado.isSelected();
-            Alumno alumno=new Alumno(dni,apellido ,nombre,fechaNac,estado);
-            alumnoData.modificarAlumno(alumno);
+            try{
+                int nombre = Integer.parseInt(JTnombreAlumno.getText());
+                int apellido =Integer.parseInt(JTapellidoAlumno.getText());
+                JOptionPane.showMessageDialog(this, "Ingrese un nombre correcto");
+            }catch (NumberFormatException ex2){
+                String nombre = JTnombreAlumno.getText();
+                String apellido = JTapellidoAlumno.getText();
+                int dni = Integer.parseInt(JTdocumentoAlumno.getText());
+                boolean estado = jbotonEstado.isSelected();
+                Alumno alumno=new Alumno(dni,apellido ,nombre,fechaNac,estado);
+                alumnoData.modificarAlumno(alumno);}
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Ingrese los números correspondientes");
         }
@@ -351,28 +387,33 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
 
     private void BotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarActionPerformed
         try{
-        AlumnoData boton = new AlumnoData();
+            AlumnoData boton = new AlumnoData();
         
-        int cod = Integer.parseInt(JTdocumentoAlumno.getText());
-        Alumno alumnito = boton.buscarAlumnoPorDni(cod);
+            int cod = Integer.parseInt(JTdocumentoAlumno.getText());
+            Alumno alumnito = boton.buscarAlumnoPorDni(cod);
         
-        if (alumnito != null){
-            JTapellidoAlumno.setText(alumnito.getApellido());
-            JTnombreAlumno.setText(alumnito.getNombre());
-            jbotonEstado.setSelected(alumnito.isEstado());
-            jdFechaNacimiento.setDate(Date.valueOf(alumnito.getFechaNacimiento()));
+            if (alumnito != null){
+                JTapellidoAlumno.setText(alumnito.getApellido());
+                JTnombreAlumno.setText(alumnito.getNombre());
+                jbotonEstado.setSelected(alumnito.isEstado());
+                jdFechaNacimiento.setDate(Date.valueOf(alumnito.getFechaNacimiento()));
             
-        } 
+            } 
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(this, "Ingrese un numero de documento valido.");
-                }
+        }catch(NullPointerException exception){
+            JOptionPane.showMessageDialog(this, "Porfavor ingrese un numero de documento valido.");
+        }
     }//GEN-LAST:event_BotonBuscarActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
+        try{
         AlumnoData eliminar = new AlumnoData();
          jbotonEstado.setSelected(false);
         eliminar.eliminarAlumno(Integer.parseInt(JTdocumentoAlumno.getText()));
-       
+        }catch(NumberFormatException ex){
+             JOptionPane.showMessageDialog(this, "Porfavor ingrese un numero de documento valido.");  
+        }
         
         
     }//GEN-LAST:event_jbEliminarActionPerformed

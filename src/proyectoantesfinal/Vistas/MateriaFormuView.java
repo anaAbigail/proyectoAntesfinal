@@ -238,13 +238,15 @@ public class MateriaFormuView extends javax.swing.JInternalFrame {
 
     private void ButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonNuevoActionPerformed
         MateriaData materiaNueva = new MateriaData();
-        
+        try{
         Materia materia = new Materia(TextForNombre.getText(), Integer.parseInt(TextForAnio.getText()), RadioButtonEstado.isSelected());
         materiaNueva.guardarMateria(materia);
         TextForNombre.setText("");
         TextForAnio.setText("");
         RadioButtonEstado.setSelected(false);
-        
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(this, "Porfavor ingrese un año correcto.");
+        }
     }//GEN-LAST:event_ButtonNuevoActionPerformed
 
     private void TextForAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextForAnioActionPerformed
@@ -295,7 +297,7 @@ public class MateriaFormuView extends javax.swing.JInternalFrame {
                 TextForAnio.setText(Integer.toString(materia.getAnioMateria()));
                 RadioButtonEstado.setSelected(materia.isEstado());
             }else{
-                JOptionPane.showMessageDialog(null, "La materia no existe");}
+                JOptionPane.showMessageDialog(null, "Porfavor ingrese una materia");}
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(this, "El codigo debe ser un numero, porfavor ingrese correctamente.");
         }

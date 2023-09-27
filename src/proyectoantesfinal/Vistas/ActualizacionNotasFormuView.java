@@ -26,7 +26,17 @@ public class ActualizacionNotasFormuView extends javax.swing.JInternalFrame {
         armarCabecera();
         armarCbox();
     }
+   public void armarCbox(){
+         AlumnoData alumnoData = new AlumnoData();
+        List<Alumno> listaDeAlumnos = alumnoData.listarAlumnos();
 
+        CBListaDeAlumnos.removeAllItems();
+
+        listaDeAlumnos.forEach((alumno) -> {
+            CBListaDeAlumnos.addItem(alumno);
+        });
+
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -194,6 +204,8 @@ public class ActualizacionNotasFormuView extends javax.swing.JInternalFrame {
             List<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionesPorAlumno(idAlumnoSeleccionado);
             cargarDatos(inscripciones);   
         }
+    }else{
+        JOptionPane.showMessageDialog(this, "Elija una materia.");
     }
         
     }//GEN-LAST:event_jBGuardarActionPerformed
@@ -233,17 +245,7 @@ public class ActualizacionNotasFormuView extends javax.swing.JInternalFrame {
     }
 
 
-    public void armarCbox(){
-         AlumnoData alumnoData = new AlumnoData();
-        List<Alumno> listaDeAlumnos = alumnoData.listarAlumnos();
-
-        CBListaDeAlumnos.removeAllItems();
-
-        listaDeAlumnos.forEach((alumno) -> {
-            CBListaDeAlumnos.addItem(alumno);
-        });
-
-    }
+ 
     private void CBListaDeAlumnosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBListaDeAlumnosItemStateChanged
 
     }//GEN-LAST:event_CBListaDeAlumnosItemStateChanged

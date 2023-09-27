@@ -278,7 +278,11 @@ private DefaultTableModel modelo = new DefaultTableModel();
                     List<Materia> updatedMaterias = inscripcionData.obtenerMateriasNOCursadas(alumnoInscribir.getIdAlumno());
                     cargarDatos(updatedMaterias);
                 }
+            }else{
+                JOptionPane.showMessageDialog(this, "Porfavor seleccione una materia para inscribir.");
             }
+        }else{
+            JOptionPane.showMessageDialog(this,"El alumno ya esta inscripto a estas materias." );
         }
     }//GEN-LAST:event_botonInscribirActionPerformed
 
@@ -315,9 +319,11 @@ private DefaultTableModel modelo = new DefaultTableModel();
                 }
 
             } else {
-                JOptionPane.showMessageDialog(this, "Porfavor seleccione una fila");
+                JOptionPane.showMessageDialog(this, "Porfavor seleccione una materia para borrar.");
             }
-        }// TODO add your handling code here:
+        }else{
+            JOptionPane.showMessageDialog(this, "No se puede borrar una inscripcion inexistente.");
+        }
     }//GEN-LAST:event_botonAnularInscripcionActionPerformed
 
     private void jMateriasInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMateriasInscriptasActionPerformed
@@ -325,6 +331,7 @@ private DefaultTableModel modelo = new DefaultTableModel();
 
         InscripcionData materias = new InscripcionData();
         if (selectedAlumno == null) {
+            JOptionPane.showMessageDialog(this, "Elija un alumno");
             return;
         }
         modelo.setRowCount(0);
@@ -341,6 +348,7 @@ private DefaultTableModel modelo = new DefaultTableModel();
 
         InscripcionData materias = new InscripcionData();
         if (selectedAlumno == null) {
+            JOptionPane.showMessageDialog(this, "Elija un alumno");
             return;
         }
         modelo.setRowCount(0);
@@ -351,18 +359,17 @@ private DefaultTableModel modelo = new DefaultTableModel();
 
 
     }//GEN-LAST:event_jMateriaNoInscriptasActionPerformed
-
+/*
     private void jListarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jListarAlumnoActionPerformed
 
-
-// TODO add your handling code here:
     }//GEN-LAST:event_jListarAlumnoActionPerformed
-
+*/
     private void jComboListarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboListarAlumnoActionPerformed
 
         Alumno selectedAlumno = (Alumno) jComboListarAlumno.getSelectedItem();
         if (selectedAlumno == null) {
             // podria agregar un mensaje de error 
+            JOptionPane.showMessageDialog(this, "Elija un alumno");
             return;
         }
 
