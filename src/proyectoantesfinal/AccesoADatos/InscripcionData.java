@@ -26,14 +26,19 @@ public class InscripcionData {
     }
 
     public void guardarInscripcion(Inscripcion insc) {
-        String sql = "INSERT INTO inscripcion (nota, idAlumno, idMateria) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO inscripcion (nota, idAlumno, idMateria) VALUES (?, ?, ?)"; //marcadores de posicion 
         try {
+         
             PreparedStatement ps = con.prepareStatement(sql);
+            
             ps.setDouble(1, insc.getNota());
             ps.setInt(2, insc.getAlumno().getIdAlumno());
             ps.setInt(3, insc.getMateria().getIdMateria());
-            ps.executeUpdate();
+            
+            ps.executeUpdate(); //insce en tabla con valores prop
+            
             JOptionPane.showMessageDialog(null, "Inscripción guardada con éxito.");
+            
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al guardar la inscripción: " + ex.getMessage());
@@ -41,18 +46,25 @@ public class InscripcionData {
     }                      //
 
     public List<Inscripcion> obtenerInscripciones() {
-        List<Inscripcion> inscripciones = new ArrayList<>();
+        List<Inscripcion> inscripciones = new ArrayList<>(); // se crea una lista vacia , contiene obj inscip 
         String sql = "SELECT nota, idAlumno, idMateria FROM inscripcion";
         try {
-            PreparedStatement ps = con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql); //prep para ser ejec
+            
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
+            
+            while (rs.next()) { //w para recorrer cd fila rs
                 Double nota = rs.getDouble("nota");
                 int idAlumno = rs.getInt("idAlumno");
                 int idMateria = rs.getInt("idMateria");
+                
+               // utilz los valores arriba se crea un onjeto Inscripcion
+               
                 Alumno alumno = aluData.buscarAlumno(idAlumno);
                 Materia materia = matData.buscarMateria(idMateria);
+                
                 Inscripcion inscripcion = new Inscripcion(alumno, materia, nota);
+                
                 inscripciones.add(inscripcion);
             }
             ps.close();
