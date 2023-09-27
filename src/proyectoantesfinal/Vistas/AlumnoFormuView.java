@@ -350,7 +350,9 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void BotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarActionPerformed
+        try{
         AlumnoData boton = new AlumnoData();
+        
         int cod = Integer.parseInt(JTdocumentoAlumno.getText());
         Alumno alumnito = boton.buscarAlumnoPorDni(cod);
         
@@ -361,6 +363,9 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
             jdFechaNacimiento.setDate(Date.valueOf(alumnito.getFechaNacimiento()));
             
         } 
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(this, "Ingrese un numero de documento valido.");
+                }
     }//GEN-LAST:event_BotonBuscarActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
