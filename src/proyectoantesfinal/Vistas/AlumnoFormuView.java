@@ -40,8 +40,8 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
         JTapellidoAlumno = new javax.swing.JTextField();
         jbotonEstado = new javax.swing.JRadioButton();
         BotonBuscar = new javax.swing.JButton();
-        jdFechaNacimiento = new com.toedter.calendar.JDateChooser();
         jBLimpiar = new javax.swing.JToggleButton();
+        jdFechaNacimiento = new com.toedter.calendar.JDateChooser();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -146,10 +146,6 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
             }
         });
 
-        jdFechaNacimiento.setBackground(new java.awt.Color(204, 255, 255));
-        jdFechaNacimiento.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, java.awt.Color.blue));
-        jdFechaNacimiento.setForeground(new java.awt.Color(255, 255, 255));
-
         jBLimpiar.setBackground(new java.awt.Color(255, 255, 204));
         jBLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoantesfinal/Vistas/Imagenes/broom.png"))); // NOI18N
         jBLimpiar.setToolTipText("Limpiar campos");
@@ -175,10 +171,7 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
                                 .addGap(27, 27, 27)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jdFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel5)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel1)
@@ -192,7 +185,9 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
                                                 .addGap(18, 18, 18)
                                                 .addComponent(BotonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(JTapellidoAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(JTnombreAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jdFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(JTnombreAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(156, 156, 156)
                                 .addComponent(JLformualumno)))
@@ -238,11 +233,11 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jbotonEstado))
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5)
                             .addComponent(jdFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(55, 55, 55)
+                        .addGap(57, 57, 57)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jbGuardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                             .addComponent(jbEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
