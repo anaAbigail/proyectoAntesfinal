@@ -268,30 +268,45 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void verificarCampos(){
+    public void verificarCampos() throws NullPointerException{
+        
+       
+        
+    }
+    private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
          if (JTdocumentoAlumno.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(this, "Porfavor ingrese un numero de documento valido.");
             return;
         }
         if(JTapellidoAlumno.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Porfavor ingrese un apellido.");
             return;
         }
         if (JTnombreAlumno.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Porfavor ingrese un nombre.");
             return;
         }
         if(jbotonEstado.isSelected()==false){
+            JOptionPane.showMessageDialog(this, "Porfavor ingrese el estado adecuado.");
             return;
         }
         if(jdFechaNacimiento.getDate()==null){
+            JOptionPane.showMessageDialog(this, "Porfavor ingrese una fecha.");
             return;
+            
         }
-    }
-    private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
-        verificarCampos();
         
         try{
          if(JTdocumentoAlumno.getText().length()==8){
             int dni=Integer.parseInt(JTdocumentoAlumno.getText());
+            
+            try{
+                int nombre = Integer.parseInt(JTnombreAlumno.getText());
+                int apellido =Integer.parseInt(JTapellidoAlumno.getText());
+                JOptionPane.showMessageDialog(this, "Ingrese un nombre correcto");
+            }catch (NumberFormatException ex2){
             String apellido = JTapellidoAlumno.getText();
+            
             String nombre = JTnombreAlumno.getText();
             boolean estado = jbotonEstado.isSelected();
     
@@ -309,11 +324,12 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
                 JTnombreAlumno.setText("");
                 jbotonEstado.setSelected(false);
                 jdFechaNacimiento.setDate(null);
-                
+            }   
            
          }else{
              JOptionPane.showMessageDialog(this, "Porfavor ingrese un numero de documento valido.");
          }
+         
      }catch(NumberFormatException ex){
          JOptionPane.showMessageDialog(this, "Porfavor ingrese un numero de documento valido.");
      }
@@ -334,15 +350,40 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
 */
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         AlumnoData alumnoData = new AlumnoData();
+         if (JTdocumentoAlumno.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(this, "Porfavor ingrese un numero de documento valido.");
+            return;
+        }
+        if(JTapellidoAlumno.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Porfavor ingrese un apellido.");
+            return;
+        }
+        if (JTnombreAlumno.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Porfavor ingrese un nombre.");
+            return;
+        }
+        if(jbotonEstado.isSelected()==false){
+            JOptionPane.showMessageDialog(this, "Porfavor ingrese el estado adecuado.");
+            return;
+        }
+        if(jdFechaNacimiento.getDate()==null){
+            JOptionPane.showMessageDialog(this, "Porfavor ingrese una fecha.");
+            return;    
+        }
         
         try {
             LocalDate fechaNac = jdFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            String nombre = JTnombreAlumno.getText();
-            String apellido = JTapellidoAlumno.getText();
-            int dni = Integer.parseInt(JTdocumentoAlumno.getText());
-            boolean estado = jbotonEstado.isSelected();
-            Alumno alumno=new Alumno(dni,apellido ,nombre,fechaNac,estado);
-            alumnoData.modificarAlumno(alumno);
+            try{
+                int nombre = Integer.parseInt(JTnombreAlumno.getText());
+                int apellido =Integer.parseInt(JTapellidoAlumno.getText());
+                JOptionPane.showMessageDialog(this, "Ingrese un nombre correcto");
+            }catch (NumberFormatException ex2){
+                String nombre = JTnombreAlumno.getText();
+                String apellido = JTapellidoAlumno.getText();
+                int dni = Integer.parseInt(JTdocumentoAlumno.getText());
+                boolean estado = jbotonEstado.isSelected();
+                Alumno alumno=new Alumno(dni,apellido ,nombre,fechaNac,estado);
+                alumnoData.modificarAlumno(alumno);}
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Ingrese los números correspondientes");
         }
@@ -351,28 +392,33 @@ public class AlumnoFormuView extends javax.swing.JInternalFrame {
 
     private void BotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarActionPerformed
         try{
-        AlumnoData boton = new AlumnoData();
+            AlumnoData boton = new AlumnoData();
         
-        int cod = Integer.parseInt(JTdocumentoAlumno.getText());
-        Alumno alumnito = boton.buscarAlumnoPorDni(cod);
+            int cod = Integer.parseInt(JTdocumentoAlumno.getText());
+            Alumno alumnito = boton.buscarAlumnoPorDni(cod);
         
-        if (alumnito != null){
-            JTapellidoAlumno.setText(alumnito.getApellido());
-            JTnombreAlumno.setText(alumnito.getNombre());
-            jbotonEstado.setSelected(alumnito.isEstado());
-            jdFechaNacimiento.setDate(Date.valueOf(alumnito.getFechaNacimiento()));
+            if (alumnito != null){
+                JTapellidoAlumno.setText(alumnito.getApellido());
+                JTnombreAlumno.setText(alumnito.getNombre());
+                jbotonEstado.setSelected(alumnito.isEstado());
+                jdFechaNacimiento.setDate(Date.valueOf(alumnito.getFechaNacimiento()));
             
-        } 
+            } 
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(this, "Ingrese un numero de documento valido.");
-                }
+        }catch(NullPointerException exception){
+            JOptionPane.showMessageDialog(this, "Porfavor ingrese un numero de documento valido.");
+        }
     }//GEN-LAST:event_BotonBuscarActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
+        try{
         AlumnoData eliminar = new AlumnoData();
          jbotonEstado.setSelected(false);
         eliminar.eliminarAlumno(Integer.parseInt(JTdocumentoAlumno.getText()));
-       
+        }catch(NumberFormatException ex){
+             JOptionPane.showMessageDialog(this, "Porfavor ingrese un numero de documento valido.");  
+        }
         
         
     }//GEN-LAST:event_jbEliminarActionPerformed
